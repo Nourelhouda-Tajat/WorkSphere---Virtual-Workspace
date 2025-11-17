@@ -41,9 +41,7 @@
 }
 
 .zone_conference { grid-area: zone_conference; background-color: black;  color: white;}
-.zones button{
-   top: 20px;
-}
+
 
 .zone_reception { grid-area: zone_reception;  background-color: black; color: white;}
 
