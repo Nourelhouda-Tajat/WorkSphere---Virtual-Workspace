@@ -1,0 +1,186 @@
+"zones":[
+  {
+    "id": 1,
+    "name": "Salle de Conférence",
+    "capacity": 10,
+    "allowedRoles": [],
+    "restrictedRoles": [],
+    "currentOccupants": [],
+    "isRestricted": false,
+    "description": "Espace pour réunions et présentations"
+  },
+  {
+    "id": 2,
+    "name": "Réception",
+    "capacity": 15,
+    "allowedRoles": ["Réceptionniste"],
+    "restrictedRoles": [],
+    "currentOccupants": ["EMP0001"],
+    "isRestricted": false,
+    "description": "Accueil des visiteurs - Réceptionnistes uniquement"
+  },
+  {
+    "id": 3,
+    "name": "Salle des Serveurs",
+    "capacity": 5,
+    "allowedRoles": ["Technicien IT"],
+    "restrictedRoles": [],
+    "currentOccupants": [],
+    "isRestricted": true,
+    "description": "Infrastructure IT - Techniciens IT uniquement"
+  },
+  {
+    "id": 4,
+    "name": "Salle de Sécurité",
+    "capacity": 2,
+    "allowedRoles": ["Agent de sécurité"],
+    "restrictedRoles": [],
+    "currentOccupants": ["EMP0003"],
+    "isRestricted": true,
+    "description": "Centre de surveillance - Agents de sécurité uniquement"
+  },
+  {
+    "id": 5,
+    "name": "Salle se staff",
+    "capacity": 15,
+    "allowedRoles": [],
+    "restrictedRoles": [],
+    "currentOccupants": ["EMP0006", "EMP0007", "EMP0008"],
+    "isRestricted": false,
+    "description": "Espace de détente - Accessible à tous"
+  },
+  {
+    "id": 6,
+    "name": "Salle d'Archives",
+    "capacity": 5,
+    "allowedRoles": [],
+    "restrictedRoles": ["Nettoyage"],
+    "currentOccupants": ["EMP0010"],
+    "isRestricted": true,
+    "description": "Documents confidentiels - Nettoyage interdit"
+  }
+]
+
+
+
+
+
+
+
+
+
+"worker":[
+  {
+    "id": "1",
+    "name": "Jane Smith",
+    "role": "Réceptionniste",
+    "photo": "https://i.pravatar.cc/150?img=1",
+    "email": "jane.smith@worksphere.com",
+    "phone": "+212 6 85 74 23 47",
+    "experiences": [
+      {
+        "company": "Accueil Corp",
+        "position": "Réceptionniste",
+        "duration": "3 ans"
+      },
+      {
+        "company": "Hôtel Royal",
+        "position": "Agent d'accueil",
+        "duration": "2 ans"
+      }
+    ],
+    "assignedZone": "ZONE002",
+  },
+  {
+    "id": 2,
+    "name": "Peter Jones",
+    "role": "Technicien IT",
+    "photo": "https://i.pravatar.cc/150?img=2",
+    "email": "peter.jones@worksphere.com",
+    "phone": "+212 6 74 21 89 63",
+    "experiences": [
+      {
+        "company": "Tech Solutions",
+        "position": "Administrateur système",
+        "duration": "4 ans"
+      },
+      {
+        "company": "Digital Corp",
+        "position": "Support technique",
+        "duration": "2 ans"
+      }
+    ],
+    "assignedZone": null,
+  },
+  {
+    "id": 3,
+    "name": "Mark Rober",
+    "role": "Agent de sécurité",
+    "photo": "https://i.pravatar.cc/150?img=3",
+    "email": "mark.rober@worksphere.com",
+    "phone": "+212 6 54 82 37 91",
+    "experiences": [
+      {
+        "company": "SecureGuard",
+        "position": "Agent de sécurité",
+        "duration": "5 ans"
+      }
+    ],
+    "assignedZone": "ZONE004",
+  },
+  {
+    "id": 4,
+    "name": "Sarah Connor",
+    "role": "Manager",
+    "photo": "https://i.pravatar.cc/150?img=4",
+    "email": "sarah.connor@worksphere.com",
+    "phone": "+212 6 72 14 81 36",
+    "experiences": [
+      {
+        "company": "Business Corp",
+        "position": "Manager général",
+        "duration": "6 ans"
+      },
+      {
+        "company": "StartUp Inc",
+        "position": "Chef de projet",
+        "duration": "3 ans"
+      }
+    ],
+    "assignedZone": null,
+  },
+  {
+    "id": 5,
+    "name": "John Doe",
+    "role": "Nettoyage",
+    "photo": "https://i.pravatar.cc/150?img=5",
+    "email": "john.doe@worksphere.com",
+    "phone": "+212 6 47 52 34 85",
+    "experiences": [
+      {
+        "company": "CleanPro",
+        "position": "Agent d'entretien",
+        "duration": "2 ans"
+      }
+    ],
+    "assignedZone": null,
+  },
+  {
+    "id": 6,
+    "name": "Alice Brown",
+    "role": "Développeur",
+    "photo": "https://i.pravatar.cc/150?img=6",
+    "email": "alice.brown@worksphere.com",
+    "phone": "+212 6 54 87 95 41",
+    "experiences": [
+      {
+        "company": "WebDev Agency",
+        "position": "Développeur Full Stack",
+        "duration": "4 ans"
+      }
+    ],
+    "assignedZone": "ZONE005",
+  },
+ 
+]
+

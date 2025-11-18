@@ -5,92 +5,149 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add_circle" />
-    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=delete" />
+
+    <title>WorkSphere - Staff Management</title>
 </head>
 <body>
     <header>
-
+        <h1>WorkSphere</h1>
+        <span>Visual Staff Management System</span>
     </header>
+
     <section class="container">
-        <div class="sidebar">
-            <div class="box">
-                <h2>Gestion du personnel</h2>
-                <button id="add">Ajouter un employé</button>
-            </div>
+        <!-- sidebar : Unassigned Staff -->
+        <div class="first_box">
+            <h2>Unassigned Staff</h2>
             <div class="profile">
-                <img src="" alt="">
-                <p class="name_worker">nom</p>
-                <p class="role_worker">role</p>
-
-            </div>
-            <dialog id="addworker">
-                <label for="nom">Name</label>
-                <input type="text" id="nom" name="nom">
-                <label for="role">Role</label>
-                <input type="text" id="role" name="role">
-                <label for="photo">Photo (URL)</label>
-                <input type="text" id="photo" name="photo">
-                <p>Experiences</p>
-                <label for="nom">Company</label>
-                <input type="text" id="company" name="compay">
-                <label for="role">Role</label>
-                <input type="text" id="role" name="role">
-                <label for="date">From</label>
-                <input type="date" id="date_start" name="start_date">
-                <label for="date">To</label>
-                <input type="date" id="date_end" name="start_end">
-                <button>Add Experiences</button>
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email">
-                <label for="email">Phone</label>
-                <input type="text" id="phone" name="phone">
-                <button>Save Worker</button>
-                <button>Close</button>
-
-            </dialog>
-        </div>
-        <div class="plan">
-            <h1>Structure de WorkSphere</h1>
-            <!-- <div class="zones"> -->
-                <div class="zones">
-                    <div class="zone_conference">
-                        <h3>Salle de conférence</h3>
-
-                        <button class="material-symbols-outlined">add_circle</button>
-                    </div>
-                    <div class="zone_reception">
-                        <h3>Salle de reception</h3>
-
-                        <button class="material-symbols-outlined">add_circle</button>
-                    </div>
-                    <!-- <div class="couloir">
-                        <button class="material-symbols-outlined">add_circle</button>
-                    </div> -->
-                    <div class="zone_archive">
-                        <h3>Salle d'archive</h3>
-
-                        <button class="material-symbols-outlined">add_circle</button>
-                    </div>
-                    <div class="zone_security">
-                        <h3>Salle de security</h3>
-
-                        <button class="material-symbols-outlined">add_circle</button>
-                    </div>
-                    <!-- <div class="couloire">
-                        <button class="material-symbols-outlined">add_circle</button>
-                    </div> -->
-                    <div class="zone_staff">
-                        <h3>Salle de Staff</h3>
-                        <button class="material-symbols-outlined">add_circle</button>
-                    </div>
-                    <div class="zone_serveur">
-                        <h3>Salle de Serveur</h3>
-                        <button class="material-symbols-outlined">add_circle</button>
-                    </div>
+                <div class="img_profil">
+                    FN
                 </div>
-            <!-- </div> -->
+                <div class="info_profil">
+                    <h3>full name</h3>
+                    <p>Description</p>
+                </div>
+                <button class="material-symbols-outlined">delete</button>
+            </div>
+            <button id="add_worker">+ Add new worker</button>
+        </div>
+        <!-- floor plan -->
+        <div class="second_box">
+            <h2>Floor Plan -- </h2>
+            <div class="floor_grid">
+                <div class="zone_conference">
+                    <h3>Conference Room</h3>
+                    <p class="capacity"></p>
+                    <button class="material-symbols-outlined">add_circle</button>
+                </div>
+                <div class="zone_reception">
+                    <h3>Reception</h3>
+                    <p class="capacity"></p>
+                    <button class="material-symbols-outlined">add_circle</button>
+                </div>
+                
+                <div class="zone_archive">
+                    <h3>Archives Room</h3>
+                    <p class="capacity"></p>
+                    <button class="material-symbols-outlined">add_circle</button>
+                </div>
+                <div class="zone_security">
+                    <h3>Security Room</h3>
+                    <p class="capacity"></p>
+                    <button class="material-symbols-outlined">add_circle</button>
+                </div>
+                <div class="zone_staff">
+                    <h3>Staff Room</h3>
+                    <p class="capacity"></p>
+                    <button class="material-symbols-outlined">add_circle</button>
+                </div>
+                <div class="zone_serveur">
+                    <h3>Serveur Room</h3>
+                    <p class="capacity"></p>
+                    <button class="material-symbols-outlined">add_circle</button>
+                </div>
+            </div>
         </div>
     </section>
+    <!-- Modal Add New Worker -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+        <div class="modal-header">
+            <h2>Add New Worker</h2>
+            <button class="close-btn" onclick="closeModal()">×</button>
+        </div>
+        
+        <div class="modal-body">
+            <form id="workerForm">
+                <!-- Photo Preview -->
+                <div class="photo-preview" id="photoPreview">
+                    <span class="photo-preview-placeholder">👤</span>
+                </div>
+
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" placeholder="Enter employee name" required>
+                </div>
+
+                <!-- Role -->
+                <div class="form-group">
+                    <label for="role">Role *</label>
+                    <select id="role" required>
+                        <option value="">Select a role</option>
+                        <option value="receptionist">Receptionist</option>
+                        <option value="it-technician">IT Technician</option>
+                        <option value="security-officer">Security Officer</option>
+                        <option value="manager">Manager</option>
+                        <option value="cleaning">Cleaning Staff</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Photo URL -->
+                <div class="form-group">
+                    <label for="photo">Photo URL</label>
+                    <input type="url" id="photo" placeholder="https://example.com/photo.jpg" 
+                           onchange="updatePhotoPreview()">
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" placeholder="employee@worksphere.com" required>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" placeholder="+1 (555) 123-4567">
+                </div>
+
+                <!-- Professional Experience -->
+                <div class="form-group">
+                    <label>Professional Experience</label>
+                    <div class="experience-section">
+                        <div id="experienceContainer">
+                            <div class="experience-item">
+                                <input type="text" placeholder="Job Title" class="exp-input">
+                                <input type="text" placeholder="Company Name" class="exp-input">
+                                <input type="text" placeholder="Duration (e.g., 2020-2023)" class="exp-input">
+                            </div>
+                        </div>
+                        <button type="button" class="add-experience-btn" onclick="addExperience()">
+                            + Add Experience
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="submitForm()">Add Worker</button>
+        </div>
+    </div>
+</div>
     <script src="script.js"></script>
 </body>
 </html>
