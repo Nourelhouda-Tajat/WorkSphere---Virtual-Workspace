@@ -63,5 +63,94 @@ endDateInput.addEventListener("input", () => {
     endDateInput.style.borderColor = "green";
   }
 });
+// === CANCEL BUTTON ===
+const cancelBtn = document.querySelector(".btn_cancel");
+const closeBtn= document.querySelector(".close_btn");
+closeBtn.addEventListener("click", () => {
+  modal.close();
+  workerForm.reset();
+  photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
+});
+cancelBtn.addEventListener("click", () => {
+  modal.close();
+  workerForm.reset();
+  photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
+});
+// === GLOBAL EMPLOYEES STATE ===
+let employees = [];
+// === ADD EXPERIENCE ===
+const addExpBtn = document.querySelector(".add-experience-btn");
+const expContainer = document.getElementById("experienceContainer");
+
+addExpBtn.addEventListener("click", () => {
+  const div = document.createElement("div");
+  div.classList.add("experience-item");
+
+  div.innerHTML = `
+  <button type="button" class="remove-exp" style="margin-left: 450px;">X</button>
+    <input type="text" placeholder="Job Title" class="exp-input">
+    <input type="text" placeholder="Company Name" class="exp-input">
+    <input type="text" placeholder="Duration (e.g., 2020-2023)" class="exp-input">
+  `;
+
+  expContainer.appendChild(div);
+
+  // remove button
+  div.querySelector(".remove-exp").addEventListener("click", () => {
+    div.remove();
+  });
+});
+// === SUBMIT ADD WORKER ===
+const submitBtn = document.querySelector(".btn_addWorker");
+const workerForm = document.getElementById("workerForm");
+
+submitBtn.addEventListener("click", () => {
+  // Check required fields
+  if (
+    !nameRegex.test(nameInput.value) ||
+    !emailRegex.test(emailInput.value) ||
+    !startDateInput.value ||
+    (endDateInput.value && endDateInput.value < startDateInput.value)
+  ) {
+    alert("Please fill all required fields correctly.");
+    return;
+  }
+
+  // Collect Experience
+  const expItems = document.querySelectorAll(".experience-item");
+  let experience = [];
+
+  expItems.forEach(item => {
+    const inputs = item.querySelectorAll(".exp-input");
+    experience.push({
+      title: inputs[0].value,
+      company: inputs[1].value,
+      duration: inputs[2].value
+    });
+  });
+
+  // Build employee object
+  const newEmployee = {
+    name: nameInput.value,
+    role: role.value,
+    photo: photo.value,
+    email: emailInput.value,
+    phone: phoneInput.value,
+    startDate: startDateInput.value,
+    endDate: endDateInput.value,
+    experience: experience
+  };
+
+  // Add to global state
+  employees.push(newEmployee);
+
+  console.log("Employee added:", newEmployee);
+  console.log("All employees:", employees);
+
+  // Close modal + reset form
+  modal.close();
+  workerForm.reset();
+  photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
+});
 
 
