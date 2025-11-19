@@ -78,6 +78,39 @@ cancelBtn.addEventListener("click", () => {
 });
 // === GLOBAL EMPLOYEES STATE ===
 let employees = [];
+// === LOAD EMPLOYEES FROM worker.json ===
+fetch("worker.json")
+  .then(res => res.json())
+  .then(data => {
+    employees = data.employees; // Charger dans l'état global
+    displayUnassignedStaff();   // Afficher dans la sidebar
+  })
+  .catch(err => console.error("Error loading worker.json:", err));
+  // === DISPLAY UNASSIGNED STAFF ===
+const staffContainer = document.querySelector(".first_box");
+
+function displayUnassignedStaff() {
+  // Supprimer anciens cards (tous sauf le bouton)
+  staffContainer.querySelectorAll(".profile").forEach(card => card.remove());
+
+  employees.forEach(emp => {
+    const card = document.createElement("div");
+    card.classList.add("profile");
+
+    card.innerHTML = `
+      <div class="img_profil">${emp.name.charAt(0)}${emp.name.split(" ")[1]?.charAt(0) || ""}</div>
+      <div class="info_profil">
+        <h3>${emp.name}</h3>
+        <p>${emp.role}</p>
+      </div>
+      <button class="material-symbols-outlined">delete</button>
+    `;
+
+    staffContainer.insertBefore(card, document.getElementById("add_worker"));
+  });
+}
+
+
 // === ADD EXPERIENCE ===
 const addExpBtn = document.querySelector(".add-experience-btn");
 const expContainer = document.getElementById("experienceContainer");
@@ -146,11 +179,36 @@ submitBtn.addEventListener("click", () => {
 
   console.log("Employee added:", newEmployee);
   console.log("All employees:", employees);
+  displayUnassignedStaff();
+
 
   // Close modal + reset form
   modal.close();
   workerForm.reset();
   photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
+});
+// === LIVE PHOTO PREVIEW ===
+const photoInput = document.getElementById("photo");
+const photoPreview = document.getElementById("photoPreview");
+
+photoInput.addEventListener("input", () => {
+  const url = photoInput.value.trim();
+
+  if (url === "") {
+    photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
+    return;
+  }
+
+  const img = document.createElement("img");
+  img.src = url;
+  img.alt = "Preview";
+  img.style.width = "120px";
+  img.style.height = "120px";
+  img.style.objectFit = "cover";
+  img.style.borderRadius = "8px";
+
+  photoPreview.innerHTML = "";
+  photoPreview.appendChild(img);
 });
 
 
