@@ -70,18 +70,18 @@
         </div>
     </section>
     <!-- Modal Add New Worker -->
-<div class="modal-overlay" id="modalOverlay">
+<dialog class="modal-overlay" id="modalOverlay">
     <div class="modal">
         <div class="modal-header">
             <h2>Add New Worker</h2>
-            <button class="close-btn" onclick="closeModal()">×</button>
+            <button class="close-btn">×</button>
         </div>
         
         <div class="modal-body">
             <form id="workerForm">
                 <!-- Photo Preview -->
                 <div class="photo-preview" id="photoPreview">
-                    <span class="photo-preview-placeholder">👤</span>
+                    <span class="photo-preview-placeholder"></span>
                 </div>
 
                 <!-- Name -->
@@ -107,8 +107,7 @@
                 <!-- Photo URL -->
                 <div class="form-group">
                     <label for="photo">Photo URL</label>
-                    <input type="url" id="photo" placeholder="https://example.com/photo.jpg" 
-                           onchange="updatePhotoPreview()">
+                    <input type="url" id="photo" placeholder="https://example.com/photo.jpg">
                 </div>
 
                 <!-- Email -->
@@ -120,7 +119,7 @@
                 <!-- Phone -->
                 <div class="form-group">
                     <label for="phone">Phone</label>
-                    <input type="tel" id="phone" placeholder="+1 (555) 123-4567">
+                    <input type="tel" id="phone" placeholder="06 12 34 56 27">
                 </div>
 
                 <!-- Professional Experience -->
@@ -134,9 +133,7 @@
                                 <input type="text" placeholder="Duration (e.g., 2020-2023)" class="exp-input">
                             </div>
                         </div>
-                        <button type="button" class="add-experience-btn" onclick="addExperience()">
-                            + Add Experience
-                        </button>
+                        <button type="button" class="add-experience-btn">+ Add Experience </button>
                     </div>
                 </div>
             </form>
@@ -147,7 +144,7 @@
             <button class="btn btn-primary" onclick="submitForm()">Add Worker</button>
         </div>
     </div>
-</div>
+</dialog>
     <script src="script.js"></script>
 </body>
 </html>

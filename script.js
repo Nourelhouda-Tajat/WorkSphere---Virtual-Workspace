@@ -1,6 +1,6 @@
-const addbtn= document.getElementById("add");
-const modal= document.getElementById("addworker");
+const addbtn = document.getElementById("add_worker");
+const modal = document.getElementById("modalOverlay");
 
-addbtn.addEventListener('click',()=>{
-    modal.showModal();
-})
+addbtn.addEventListener("click", () => {
+  modal.showModal();
+});
