@@ -46,7 +46,7 @@ header span {
     font-weight: 600;
     margin-bottom: 15px;
 }
-.first_box button{
+/* .first_box button{
     background-color: #27ae60;
     color: #ffffff;
     padding: 12px;
@@ -62,7 +62,7 @@ header span {
 .first_box button:hover {
     background-color: #229954;
     transform: translateY(-2px);
-}
+} */
 .profile{
     display: flex;
     align-items: center;
@@ -111,7 +111,7 @@ header span {
 }
 .floor_grid {
     display: grid;
-    grid-template-columns: 2.5fr repeat(3, 1fr); 
+    grid-template-columns: 30vw repeat(3, 15vw); 
     grid-template-rows: repeat(3, 180px); 
     gap: 10px;
     grid-template-areas:
@@ -130,78 +130,118 @@ header span {
 .zone_conference {
     background-color: #e8f5e9;
     border-color: #4caf50;
+    position: relative;
+    padding: 5%;
 }
 .zone_conference:hover {
     background-color: #c8e6c9;
     box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
 }
-.zone_conference button {
+.zone_conference i {
     color: #4caf50;
+    position: absolute;
+    top:1vw;
+    right: 1vw;
 }
 
 /* Reception - Orange */
 .zone_reception {
     background-color: #fff3e0;
     border-color: #ff9800;
+    position: relative;
+    padding: 5%;
 }
 .zone_reception:hover {
     background-color: #ffe0b2;
     box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
 }
-.zone_reception button {
+.zone_reception i {
     color: #ff9800;
+    position: absolute;
+    top:1vw;
+    right: 1vw;
+    cursor: pointer;
+
 }
 
 /* Server Room - Blue */
 .zone_serveur {
     background-color: #e3f2fd;
     border-color: #2196f3;
+    position: relative;
+    padding: 5%;
 }
 .zone_serveur:hover {
     background-color: #bbdefb;
     box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
 }
-.zone_serveur button {
+.zone_serveur i {
     color: #2196f3;
+    position: absolute;
+    top:1vw;
+    right: 1vw;
+    cursor: pointer;
 }
 
 /* Security Room - Pink */
 .zone_security {
     background-color: #fce4ec;
     border-color: #e91e63;
+    position: relative;
+    padding: 5%;
 }
 .zone_security:hover {
     background-color: #f8bbd0;
     box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
 }
-.zone_security button {
+.zone_security i {
     color: #e91e63;
+    position: absolute;
+    top:1vw;
+    right: 1vw;
+    cursor: pointer;
 }
 
 /* Staff Room - Purple */
 .zone_staff {
     background-color: #f3e5f5;
     border-color: #9c27b0;
+    position: relative;
+    padding: 5%;
 }
 .zone_staff:hover {
     background-color: #e1bee7;
     box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
 }
-.zone_staff button {
+.zone_staff i {
     color: #9c27b0;
+    position: absolute;
+    top:1vw;
+    right: 1vw;
+    cursor: pointer;
 }
 
 /* Archives Room - Brown */
 .zone_archive {
     background-color: #efebe9;
     border-color: #795548;
+    position: relative;
+    padding: 5%;
+    width: 15vw;
+    cursor: pointer;
+
 }
 .zone_archive:hover {
     background-color: #d7ccc8;
     box-shadow: 0 4px 12px rgba(121, 85, 72, 0.3);
 }
-.zone_archive button {
+.zone_archive i {
     color: #795548;
+    position: absolute;
+    top:1vw;
+    right: 1vw;
+    cursor: pointer;
+
 }
 
 /* ========== MODAL STYLES ========== */

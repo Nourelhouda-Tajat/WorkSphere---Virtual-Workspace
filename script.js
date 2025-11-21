@@ -37,7 +37,7 @@ emailInput.addEventListener("input", () => {
 
 phoneInput.addEventListener("input", () => {
   if (phoneInput.value.trim() === "") {
-    phoneInput.style.borderColor = ""; // optional field
+    phoneInput.style.borderColor = "";
   } else {
     phoneInput.style.borderColor = phoneRegex.test(phoneInput.value)
       ? "green"
@@ -50,22 +50,21 @@ startDateInput.addEventListener("input", () => {
   startDateInput.style.borderColor = startDateInput.value ? "green" : "red";
 });
 
-// Validate end date (optional, but must be after start date)
 endDateInput.addEventListener("input", () => {
   if (endDateInput.value.trim() === "") {
-    endDateInput.style.borderColor = ""; // optional field
+    endDateInput.style.borderColor = "";
   } else if (
     startDateInput.value &&
     endDateInput.value < startDateInput.value
   ) {
-    endDateInput.style.borderColor = "red"; // end date before start date
+    endDateInput.style.borderColor = "red";
   } else {
     endDateInput.style.borderColor = "green";
   }
 });
 // === CANCEL BUTTON ===
 const cancelBtn = document.querySelector(".btn_cancel");
-const closeBtn= document.querySelector(".close_btn");
+const closeBtn = document.querySelector(".close_btn");
 closeBtn.addEventListener("click", () => {
   modal.close();
   workerForm.reset();
@@ -78,38 +77,43 @@ cancelBtn.addEventListener("click", () => {
 });
 // === GLOBAL EMPLOYEES STATE ===
 let employees = [];
-// === LOAD EMPLOYEES FROM worker.json ===
+
 fetch("worker.json")
-  .then(res => res.json())
-  .then(data => {
-    employees = data.employees; // Charger dans l'état global
-    displayUnassignedStaff();   // Afficher dans la sidebar
+  .then((res) => res.json())
+  .then((data) => {
+    employees = data.employees;
+    displayUnassignedStaff();
   })
-  .catch(err => console.error("Error loading worker.json:", err));
-  // === DISPLAY UNASSIGNED STAFF ===
+  .catch((err) => console.error("Error loading worker.json:", err));
+// === DISPLAY UNASSIGNED STAFF ===
 const staffContainer = document.querySelector(".first_box");
 
 function displayUnassignedStaff() {
-  // Supprimer anciens cards (tous sauf le bouton)
-  staffContainer.querySelectorAll(".profile").forEach(card => card.remove());
+  staffContainer.querySelectorAll(".profile").forEach((card) => card.remove());
 
-  employees.forEach(emp => {
+  employees.forEach((emp) => {
     const card = document.createElement("div");
     card.classList.add("profile");
 
     card.innerHTML = `
-      <div class="img_profil">${emp.name.charAt(0)}${emp.name.split(" ")[1]?.charAt(0) || ""}</div>
+      <div class="img_profil">${emp.name.charAt(0)}${
+      emp.name.split(" ")[1]?.charAt(0) || ""
+    }</div>
       <div class="info_profil">
         <h3>${emp.name}</h3>
         <p>${emp.role}</p>
       </div>
-      <button class="material-symbols-outlined">delete</button>
-    `;
-
+      <span><i class="fa-solid fa-xmark icone_close"></i></span>
+      
+      `;
+    const supp_profil = card.querySelector(".icone_close");
+    supp_profil.addEventListener("click", () => {
+      card.remove();
+    });
     staffContainer.insertBefore(card, document.getElementById("add_worker"));
+    // staffContainer.appendChild(card);
   });
 }
-
 
 // === ADD EXPERIENCE ===
 const addExpBtn = document.querySelector(".add-experience-btn");
@@ -133,7 +137,7 @@ addExpBtn.addEventListener("click", () => {
     div.remove();
   });
 });
-// === SUBMIT ADD WORKER ===
+
 const submitBtn = document.querySelector(".btn_addWorker");
 const workerForm = document.getElementById("workerForm");
 
@@ -153,16 +157,15 @@ submitBtn.addEventListener("click", () => {
   const expItems = document.querySelectorAll(".experience-item");
   let experience = [];
 
-  expItems.forEach(item => {
+  expItems.forEach((item) => {
     const inputs = item.querySelectorAll(".exp-input");
     experience.push({
       title: inputs[0].value,
       company: inputs[1].value,
-      duration: inputs[2].value
+      duration: inputs[2].value,
     });
   });
 
-  // Build employee object
   const newEmployee = {
     name: nameInput.value,
     role: role.value,
@@ -171,7 +174,7 @@ submitBtn.addEventListener("click", () => {
     phone: phoneInput.value,
     startDate: startDateInput.value,
     endDate: endDateInput.value,
-    experience: experience
+    experience: experience,
   };
 
   // Add to global state
@@ -181,13 +184,12 @@ submitBtn.addEventListener("click", () => {
   console.log("All employees:", employees);
   displayUnassignedStaff();
 
-
   // Close modal + reset form
   modal.close();
   workerForm.reset();
   photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
 });
-// === LIVE PHOTO PREVIEW ===
+
 const photoInput = document.getElementById("photo");
 const photoPreview = document.getElementById("photoPreview");
 
@@ -211,4 +213,66 @@ photoInput.addEventListener("input", () => {
   photoPreview.appendChild(img);
 });
 
+const planFloor = document.querySelector(".floor_grid");
+const addBtnFloor = document.querySelectorAll(".add_zone");
 
+addBtnFloor.forEach((addbtn) => {
+  addbtn.addEventListener("click", (btn) => {
+    const zone = btn.parentElement;
+    const modalAssignement = zone.querySelector(".menu_unassigned");
+
+    modalAssignement.innerHTML = "";
+
+    const modalAssignementContent = document.createElement("div");
+    modalAssignementContent.style.padding = "20px";
+    modalAssignementContent.innerHTML = `
+      <div class="dialog-header">
+        <h2>Assigner un employé</h2>
+        <button class="close-dialog-zone">✕</button>
+      </div>
+      <div class="list_worker"></div>
+    `;
+
+    modalAssignement.appendChild(modalAssignementContent);
+
+    // Afficher les employés non assignés
+    const listeContainer = modalAssignement.querySelector(".liste-employees");
+
+    employees.forEach((emp) => {
+      const card = document.createElement("div");
+      card.classList.add("profile");
+      card.innerHTML = `
+        <div class="img_profil"><img src="${employees.photo}" alt=""></div>
+        <div class="info_profil">
+          <h3>${emp.name}</h3>
+          <p>${emp.role}</p>
+        </div>
+      `;
+
+      // Cliquer sur la carte pour assigner l'employé
+      card.addEventListener("click", () => {
+        const zoneName = zone.querySelector("h3").textContent;
+        alert(`${emp.name} assigné(e) à ${zoneName}`);
+        modalAssignement.close();
+      });
+
+      listeContainer.appendChild(card);
+    });
+
+    // Afficher le modal
+    modalAssignement.showModal();
+
+    // Bouton fermer
+    const closeBtn = modalAssignement.querySelector(".close-dialog-zone");
+    closeBtn.addEventListener("click", () => {
+      modalAssignement.close();
+    });
+
+    // Fermer en cliquant en dehors
+    modalAssignement.addEventListener("click", (e) => {
+      if (e.target === modalAssignement) {
+        modalAssignement.close();
+      }
+    });
+  });
+});
