@@ -77,11 +77,13 @@ cancelBtn.addEventListener("click", () => {
 });
 // === GLOBAL EMPLOYEES STATE ===
 let employees = [];
+let zones = [];
 
 fetch("worker.json")
   .then((res) => res.json())
   .then((data) => {
     employees = data.employees;
+    zones = data.zones;
     displayUnassignedStaff();
   })
   .catch((err) => console.error("Error loading worker.json:", err));
@@ -217,15 +219,16 @@ const planFloor = document.querySelector(".floor_grid");
 const addBtnFloor = document.querySelectorAll(".add_zone");
 
 addBtnFloor.forEach((addbtn) => {
-  addbtn.addEventListener("click", (btn) => {
-    const zone = btn.parentElement;
+  addbtn.addEventListener("click", (event) => {
+    const zone = event.target.parentElement;
+
     const modalAssignement = zone.querySelector(".menu_unassigned");
 
     modalAssignement.innerHTML = "";
 
-    const modalAssignementContent = document.createElement("div");
-    modalAssignementContent.style.padding = "20px";
-    modalAssignementContent.innerHTML = `
+    const modalContent = document.createElement("div");
+    modalContent.style.padding = "20px";
+    modalContent.innerHTML = `
       <div class="dialog-header">
         <h2>Assigner un employé</h2>
         <button class="close-dialog-zone">✕</button>
@@ -233,25 +236,32 @@ addBtnFloor.forEach((addbtn) => {
       <div class="list_worker"></div>
     `;
 
-    modalAssignement.appendChild(modalAssignementContent);
+    modalAssignement.appendChild(modalContent);
 
-    // Afficher les employés non assignés
-    const listeContainer = modalAssignement.querySelector(".liste-employees");
+    const listeContainer = modalAssignement.querySelector(".list_worker");
+
+    const zoneName = zone.querySelector("h3").textContent;
+    const currentZone = zones.find((z) => z.name === zoneName);
+    const allowed = currentZone ? currentZone.allowedRoles : [];
 
     employees.forEach((emp) => {
+      if (!allowed.includes(emp.role)) return;
+
       const card = document.createElement("div");
       card.classList.add("profile");
-      card.innerHTML = `
-        <div class="img_profil"><img src="${employees.photo}" alt=""></div>
-        <div class="info_profil">
-          <h3>${emp.name}</h3>
-          <p>${emp.role}</p>
-        </div>
-      `;
+      card.style.cursor = "pointer";
 
-      // Cliquer sur la carte pour assigner l'employé
+      card.innerHTML = `
+    <div class="img_profil">${emp.name.charAt(0)}${
+        emp.name.split(" ")[1]?.charAt(0) || ""
+      }</div>
+    <div class="info_profil">
+      <h3>${emp.name}</h3>
+      <p>${emp.role}</p>
+    </div>
+  `;
+
       card.addEventListener("click", () => {
-        const zoneName = zone.querySelector("h3").textContent;
         alert(`${emp.name} assigné(e) à ${zoneName}`);
         modalAssignement.close();
       });
@@ -259,16 +269,14 @@ addBtnFloor.forEach((addbtn) => {
       listeContainer.appendChild(card);
     });
 
-    // Afficher le modal
     modalAssignement.showModal();
 
-    // Bouton fermer
-    const closeBtn = modalAssignement.querySelector(".close-dialog-zone");
-    closeBtn.addEventListener("click", () => {
+    const closeBtnDialog = modalAssignement.querySelector(".close-dialog-zone");
+    closeBtnDialog.addEventListener("click", () => {
       modalAssignement.close();
     });
 
-    // Fermer en cliquant en dehors
+    // Fermer en cliquant dehors
     modalAssignement.addEventListener("click", (e) => {
       if (e.target === modalAssignement) {
         modalAssignement.close();

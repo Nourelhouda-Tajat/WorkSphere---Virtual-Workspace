@@ -23,7 +23,7 @@
     {
       "id": 2,
       "name": "Peter Jones",
-      "role": "IT Technician",
+      "role": "ITtechnician ",
       "photo": "https://i.pravatar.cc/150?img=2",
       "email": "peter.jones@worksphere.com",
       "phone": "+212667890123",
@@ -43,7 +43,7 @@
     {
       "id": 3,
       "name": "Mark Rober",
-      "role": "Security Guard",
+      "role": "Security",
       "photo": "https://i.pravatar.cc/150?img=3",
       "email": "mark.rober@worksphere.com",
       "phone": "+212623456789",
@@ -78,7 +78,7 @@
     {
       "id": 5,
       "name": "John Doe",
-      "role": "Cleaning Staff",
+      "role": "CleaningStaff",
       "photo": "https://i.pravatar.cc/150?img=5",
       "email": "john.doe@worksphere.com",
       "phone": "+212645678901",
@@ -110,7 +110,7 @@
     {
       "id": 1,
       "name": "Conference Room",
-      "allowedRoles": [],
+      "allowedRoles": ["CleaningStaff", "Manager", "ITtechnician", "Developer"],
       "capacity": 10,
       "isRestricted": false,
       "description": "Space for meetings and presentations"
@@ -118,7 +118,7 @@
     {
       "id": 2,
       "name": "Reception",
-      "allowedRoles": ["Receptionist"],
+      "allowedRoles": ["Receptionist", "CleaningStaff", "Manager"],
       "capacity": 15,
       "isRestricted": false,
       "description": "Visitor reception area - Receptionists only"
@@ -126,15 +126,15 @@
     {
       "id": 3,
       "name": "Server Room",
-      "allowedRoles": ["IT Technician"],
+      "allowedRoles": ["ITtechnician", "Manager"],
       "capacity": 5,
       "isRestricted": true,
-      "description": "IT infrastructure - IT Technicians only"
+      "description": "IT infrastructure - ITtechnicians only"
     },
     {
       "id": 4,
       "name": "Security Room",
-      "allowedRoles": ["Security Guard"],
+      "allowedRoles": ["Security", "Manager", "ITtechnician"],
       "capacity": 2,
       "isRestricted": true,
       "description": "Monitoring center - Security Guards only"
@@ -142,7 +142,7 @@
     {
       "id": 5,
       "name": "Staff Room",
-      "allowedRoles": [],
+      "allowedRoles": ["Security", "Manager", "ITtechnician", "CleaningStaff"],
       "capacity": 15,
       "isRestricted": false,
       "description": "Break room - Accessible to all staff"
@@ -150,7 +150,7 @@
     {
       "id": 6,
       "name": "Archive Room",
-      "allowedRoles": [],
+      "allowedRoles": ["Manager"],
       "capacity": 5,
       "isRestricted": true,
       "description": "Confidential documents - Cleaning staff not allowed"
