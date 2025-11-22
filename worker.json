@@ -23,7 +23,7 @@
     {
       "id": 2,
       "name": "Peter Jones",
-      "role": "ITtechnician ",
+      "role": "IT_Technician ",
       "photo": "https://i.pravatar.cc/150?img=2",
       "email": "peter.jones@worksphere.com",
       "phone": "+212667890123",
@@ -110,7 +110,12 @@
     {
       "id": 1,
       "name": "Conference Room",
-      "allowedRoles": ["CleaningStaff", "Manager", "ITtechnician", "Developer"],
+      "allowedRoles": [
+        "CleaningStaff",
+        "Manager",
+        "IT_Technician",
+        "Developer"
+      ],
       "capacity": 10,
       "isRestricted": false,
       "description": "Space for meetings and presentations"
@@ -126,7 +131,7 @@
     {
       "id": 3,
       "name": "Server Room",
-      "allowedRoles": ["ITtechnician", "Manager"],
+      "allowedRoles": ["IT_Technician", "Manager"],
       "capacity": 5,
       "isRestricted": true,
       "description": "IT infrastructure - ITtechnicians only"
@@ -134,7 +139,7 @@
     {
       "id": 4,
       "name": "Security Room",
-      "allowedRoles": ["Security", "Manager", "ITtechnician"],
+      "allowedRoles": ["Security", "Manager", "IT_Technician"],
       "capacity": 2,
       "isRestricted": true,
       "description": "Monitoring center - Security Guards only"
@@ -142,7 +147,7 @@
     {
       "id": 5,
       "name": "Staff Room",
-      "allowedRoles": ["Security", "Manager", "ITtechnician", "CleaningStaff"],
+      "allowedRoles": ["Security", "Manager", "IT_Technician", "CleaningStaff"],
       "capacity": 15,
       "isRestricted": false,
       "description": "Break room - Accessible to all staff"

@@ -446,3 +446,38 @@ dialog{
     background: #7f8c8d;
 }
 
+.assigned_list {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.assigned_card {
+  display: flex;
+  align-items: center;
+  background: #f1f1f1;
+  padding: 8px;
+  border-radius: 6px;
+  gap: 10px;
+}
+
+.assigned_photo {
+  width: 45px;
+  height: 45px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.assigned_info h4 {
+  margin: 0;
+  font-size: 14px;
+}
+.assigned_info p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.7;
+}
+.remove_assigned{
+    margin-left: 250px;
+}
