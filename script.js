@@ -18,6 +18,7 @@ const workerForm = document.getElementById("workerForm");
 
 // Champs de formulaire - Informations personnelles
 const nameInput = document.getElementById("name");
+const roleInput = document.getElementById("role");
 const emailInput = document.getElementById("email");
 const phoneInput = document.getElementById("phone");
 const photoInput = document.getElementById("photo");
@@ -191,18 +192,20 @@ submitBtn.addEventListener("click", () => {
 
   expItems.forEach((item) => {
     const inputs = item.querySelectorAll(".exp-input");
-    experience.push({
-      title: inputs[0].value,
-      company: inputs[1].value,
-      duration: inputs[2].value,
-    });
+    if (inputs.length === 3) {
+      experience.push({
+        title: inputs[0].value,
+        company: inputs[1].value,
+        duration: inputs[2].value,
+      });
+    }
   });
 
   // Création du nouvel employé
   const newEmployee = {
     name: nameInput.value,
-    role: role.value,
-    photo: photo.value,
+    role: roleInput.value,
+    photo: photoInput.value,
     email: emailInput.value,
     phone: phoneInput.value,
     startDate: startDateInput.value,
