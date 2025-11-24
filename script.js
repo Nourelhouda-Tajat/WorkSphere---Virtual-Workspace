@@ -55,98 +55,99 @@ fetch("worker.json")
     displayUnassignedStaff();
   })
   .catch((err) => console.error("Error loading worker.json:", err));
+  console.log(employees);
 
-// ============================================
-// GESTION DU MODAL PRINCIPAL
-// ============================================
-// Ouvrir le modal
-console.log(addbtn, modal);
-addbtn.addEventListener("click", () => {
-  modal.showModal();
-});
+  // ============================================
+  // GESTION DU MODAL PRINCIPAL
+  // ============================================
+  // Ouvrir le modal
+  console.log(addbtn, modal);
+  addbtn.addEventListener("click", () => {
+    modal.showModal();
+  });
 
-// Fermer le modal - Bouton Close
-closeBtn.addEventListener("click", () => {
-  modal.close();
-  workerForm.reset();
-  photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
-});
+  // Fermer le modal - Bouton Close
+  closeBtn.addEventListener("click", () => {
+    modal.close();
+    workerForm.reset();
+    photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
+  });
 
-// Fermer le modal - Bouton Cancel
-cancelBtn.addEventListener("click", () => {
-  modal.close();
-  workerForm.reset();
-  photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
-});
+  // Fermer le modal - Bouton Cancel
+  cancelBtn.addEventListener("click", () => {
+    modal.close();
+    workerForm.reset();
+    photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
+  });
 
-// ============================================
-// VALIDATION EN TEMPS RÉEL DES CHAMPS
-// ============================================
-// Validation du nom
-nameInput.addEventListener("input", () => {
-  nameInput.style.borderColor = nameRegex.test(nameInput.value)
-    ? "green"
-    : "red";
-});
-
-// Validation de l'email
-emailInput.addEventListener("input", () => {
-  emailInput.style.borderColor = emailRegex.test(emailInput.value)
-    ? "green"
-    : "red";
-});
-
-// Validation du téléphone (optionnel)
-phoneInput.addEventListener("input", () => {
-  if (phoneInput.value.trim() === "") {
-    phoneInput.style.borderColor = "";
-  } else {
-    phoneInput.style.borderColor = phoneRegex.test(phoneInput.value)
+  // ============================================
+  // VALIDATION EN TEMPS RÉEL DES CHAMPS
+  // ============================================
+  // Validation du nom
+  nameInput.addEventListener("input", () => {
+    nameInput.style.borderColor = nameRegex.test(nameInput.value)
       ? "green"
       : "red";
-  }
-});
+  });
 
-// Validation de la date de début (obligatoire)
-startDateInput.addEventListener("input", () => {
-  startDateInput.style.borderColor = startDateInput.value ? "green" : "red";
-});
+  // Validation de l'email
+  emailInput.addEventListener("input", () => {
+    emailInput.style.borderColor = emailRegex.test(emailInput.value)
+      ? "green"
+      : "red";
+  });
 
-// Validation de la date de fin (optionnelle)
-endDateInput.addEventListener("input", () => {
-  if (endDateInput.value.trim() === "") {
-    endDateInput.style.borderColor = "";
-  } else if (
-    startDateInput.value &&
-    endDateInput.value < startDateInput.value
-  ) {
-    endDateInput.style.borderColor = "red";
-  } else {
-    endDateInput.style.borderColor = "green";
-  }
-});
+  // Validation du téléphone (optionnel)
+  phoneInput.addEventListener("input", () => {
+    if (phoneInput.value.trim() === "") {
+      phoneInput.style.borderColor = "";
+    } else {
+      phoneInput.style.borderColor = phoneRegex.test(phoneInput.value)
+        ? "green"
+        : "red";
+    }
+  });
 
-// PRÉVISUALISATION DE LA PHOTO
-photoInput.addEventListener("input", () => {
-  const url = photoInput.value.trim();
+  // Validation de la date de début (obligatoire)
+  startDateInput.addEventListener("input", () => {
+    startDateInput.style.borderColor = startDateInput.value ? "green" : "red";
+  });
 
-  if (url === "") {
-    photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
-    return;
-  }
+  // Validation de la date de fin (optionnelle)
+  endDateInput.addEventListener("input", () => {
+    if (endDateInput.value.trim() === "") {
+      endDateInput.style.borderColor = "";
+    } else if (
+      startDateInput.value &&
+      endDateInput.value < startDateInput.value
+    ) {
+      endDateInput.style.borderColor = "red";
+    } else {
+      endDateInput.style.borderColor = "green";
+    }
+  });
 
-  const img = document.createElement("img");
-  img.src = url;
-  img.alt = "Preview";
-  img.style.width = "120px";
-  img.style.height = "120px";
-  img.style.objectFit = "cover";
-  img.style.borderRadius = "8px";
+  // PRÉVISUALISATION DE LA PHOTO
+  photoInput.addEventListener("input", () => {
+    const url = photoInput.value.trim();
 
-  photoPreview.innerHTML = "";
-  photoPreview.appendChild(img);
-});
+    if (url === "") {
+      photoPreview.innerHTML =
+        '<span class="photo-preview-placeholder"></span>';
+      return;
+    }
 
+    const img = document.createElement("img");
+    img.src = url;
+    img.alt = "Preview";
+    img.style.width = "120px";
+    img.style.height = "120px";
+    img.style.objectFit = "cover";
+    img.style.borderRadius = "8px";
+
+    photoPreview.innerHTML = "";
+    photoPreview.appendChild(img);
+  });
 // GESTION DES EXPÉRIENCES PROFESSIONNELLES
 addExpBtn.addEventListener("click", () => {
   const div = document.createElement("div");
