@@ -126,9 +126,7 @@ endDateInput.addEventListener("input", () => {
   }
 });
 
-// ============================================
 // PRÉVISUALISATION DE LA PHOTO
-// ============================================
 photoInput.addEventListener("input", () => {
   const url = photoInput.value.trim();
 
@@ -149,9 +147,7 @@ photoInput.addEventListener("input", () => {
   photoPreview.appendChild(img);
 });
 
-// ============================================
 // GESTION DES EXPÉRIENCES PROFESSIONNELLES
-// ============================================
 addExpBtn.addEventListener("click", () => {
   const div = document.createElement("div");
   div.classList.add("experience-item");
@@ -171,9 +167,7 @@ addExpBtn.addEventListener("click", () => {
   });
 });
 
-// ============================================
 // SOUMISSION DU FORMULAIRE - AJOUT D'EMPLOYÉ
-// ============================================
 submitBtn.addEventListener("click", () => {
   // Vérification des champs obligatoires
   if (
@@ -239,15 +233,15 @@ function displayUnassignedStaff() {
     card.classList.add("profile");
 
     card.innerHTML = `
-      <div class="img_profil">${emp.name.charAt(0)}${
-      emp.name.split(" ")[1]?.charAt(0) || ""
-    }</div>
+      <div class="img_profil">
+        <img src="${emp.photo}" alt="${emp.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+      </div>
       <div class="info_profil">
         <h3>${emp.name}</h3>
         <p>${emp.role}</p>
       </div>
       <span><i class="fa-solid fa-xmark icone_close"></i></span>
-      
+          
       `;
 
     // Bouton de suppression de l'employé
@@ -285,32 +279,89 @@ function displayZoneAssignments(zoneElement) {
     card.classList.add("assigned_card");
 
     card.innerHTML = `
-  <img src="${emp.photo}" alt="${emp.name}" class="assigned_photo">
-  <div class="assigned_info">
-    <h4>${emp.name}</h4>
-    <p>${emp.role}</p>
-  </div>
-  <button class="fa-solid fa-xmark remove_assigned" id="deleteExperience"></button>
-`;
+      <img src="${emp.photo}" alt="${emp.name}" class="assigned_photo" style="width: 50px; height: 50px; border-radius: 50%; cursor: pointer; object-fit: cover;">
+      <button class="fa-solid fa-xmark remove_assigned" style="position: absolute; top: 5px; right: 5px; background: red; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer;"></button>
+    `;
+
+    card.style.position = "relative";
+    card.style.display = "inline-block";
+    card.style.margin = "5px";
 
     container.appendChild(card);
 
-    // Bouton de retrait de l'assignation
+    // Bouton de suppression
     card.querySelector(".remove_assigned").addEventListener("click", () => {
-      // Retirer l'employé de la zone
-      assignments[zoneName] = assignments[zoneName].filter(
-        (e) => e.id !== emp.id
-      );
-
-      // Remettre l'employé dans la liste des non-assignés
+      assignments[zoneName] = assignments[zoneName].filter((e) => e.id !== emp.id);
       employees.push(emp);
-
-      // Rafraîchir les affichages
       displayUnassignedStaff();
       displayZoneAssignments(zoneElement);
     });
+
+    // Clic sur l'image pour voir le CV
+    const photo = card.querySelector(".assigned_photo");
+    photo.addEventListener("click", () => {
+      showCV(emp);
+    });
   });
 }
+
+// ============================================
+// FONCTION D'AFFICHAGE DU CV
+// ============================================
+function showCV(emp) {
+  const dialogCV = document.getElementById("dialogCV");
+  const cvContainer = document.getElementById("cvContainer");
+  
+  // Construction des expériences
+  let experiencesHTML = "";
+  if (emp.experiences && emp.experiences.length > 0) {
+    experiencesHTML = "<h3>Expériences professionnelles</h3>";
+    emp.experiences.forEach((exp) => {
+      experiencesHTML += `
+        <div style="margin-bottom: 15px; padding: 10px; background: #f5f5f5; border-radius: 5px;">
+          <strong>${exp.titre}</strong><br>
+          <em>${exp.entreprise}</em><br>
+          <span style="color: #666;">Durée: ${exp.duree}</span>
+        </div>
+      `;
+    });
+  }
+  
+  // Remplir le contenu du CV
+  cvContainer.innerHTML = `
+    <div style="text-align: center; margin-bottom: 20px;">
+      <img src="${emp.photo}" alt="${emp.name}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+      <h2 style="margin: 10px 0;">${emp.name}</h2>
+      <p style="color: #666; font-size: 18px;">${emp.role}</p>
+    </div>
+    
+    <div style="margin-bottom: 15px;">
+      <strong>📧 Email:</strong> ${emp.email}<br>
+      <strong>📞 Téléphone:</strong> ${emp.telephone}
+    </div>
+    
+    ${experiencesHTML}
+  `;
+  
+  dialogCV.showModal();
+}
+
+// Fermer le dialog CV
+document.addEventListener("DOMContentLoaded", () => {
+  const dialogCV = document.getElementById("dialogCV");
+  const closeBtn = document.querySelector(".close-cv-btn");
+  
+  closeBtn.addEventListener("click", () => {
+    dialogCV.close();
+  });
+  
+   dialogCV.addEventListener("click", (e) => {
+    if (e.target === dialogCV) {
+      dialogCV.close();
+    }
+  });
+}); 
+
 
 // ============================================
 // GESTION DES ASSIGNATIONS DE ZONES
@@ -350,13 +401,13 @@ addBtnFloor.forEach((addbtn) => {
       card.style.cursor = "pointer";
 
       card.innerHTML = `
-    <div class="img_profil">${emp.name.charAt(0)}${
-        emp.name.split(" ")[1]?.charAt(0) || ""
-      }</div>
-    <div class="info_profil">
-      <h3>${emp.name}</h3>
-      <p>${emp.role}</p>
-    </div>
+        <div class="img_profil">
+          <img src="${emp.photo}" alt="${emp.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        </div>
+        <div class="info_profil">
+          <h3>${emp.name}</h3>
+          <p>${emp.role}</p>
+        </div>
   `;
 
       // Clic sur la carte pour assigner l'employé

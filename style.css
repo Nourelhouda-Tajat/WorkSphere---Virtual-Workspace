@@ -481,3 +481,35 @@ dialog{
 .remove_assigned{
     margin-left: 250px;
 }
+
+/* Dialog CV */
+.dialog-cv {
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #333;
+  max-width: 500px;
+  width: 90%;
+}
+
+.cv-content {
+  position: relative;
+}
+
+.close-cv-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.close-cv-btn:hover {
+  background: darkred;
+}

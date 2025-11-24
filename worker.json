@@ -2,106 +2,236 @@
   "employees": [
     {
       "id": 1,
-      "name": "Jane Smith",
-      "role": "Receptionist",
-      "photo": "https://i.pravatar.cc/150?img=1",
-      "email": "jane.smith@worksphere.com",
-      "phone": "+212612345678",
+      "name": "khadija abirat",
+      "role": "Reception",
+      "photo": "https://i.pravatar.cc/150?img=1&u=alexis.rousseau@entreprise.com",
+      "email": "alexis.rousseau@entreprise.com",
+      "telephone": "06 12 34 56 78",
       "experiences": [
         {
-          "company": "Welcome Corp",
-          "position": "Receptionist",
-          "duration": "3 years"
+          "titre": "Réceptioniste Senior",
+          "entreprise": "Hôtel Prestige",
+          "duree": "3 ans"
         },
         {
-          "company": "Royal Hotel",
-          "position": "Front Desk Agent",
-          "duration": "2 years"
+          "titre": "Assistante Administrative",
+          "entreprise": "Cabinet Juridique Martin",
+          "duree": "2 ans"
         }
       ]
     },
     {
       "id": 2,
-      "name": "Peter Jones",
-      "role": "IT_Technician ",
-      "photo": "https://i.pravatar.cc/150?img=2",
-      "email": "peter.jones@worksphere.com",
-      "phone": "+212667890123",
+      "name": "olia azzam",
+      "role": "Manager",
+      "photo": "https://i.pravatar.cc/150?img=5&u=marie.dubois@entreprise.com",
+      "email": "marie.dubois@entreprise.com",
+      "telephone": "06 87 65 43 21",
       "experiences": [
         {
-          "company": "Tech Solutions",
-          "position": "System Administrator",
-          "duration": "4 years"
+          "titre": "Directrice des Opérations",
+          "entreprise": "TechCorp France",
+          "duree": "5 ans"
         },
         {
-          "company": "Digital Corp",
-          "position": "Technical Support",
-          "duration": "2 years"
+          "titre": "Chef de Projet",
+          "entreprise": "Innovation Solutions",
+          "duree": "4 ans"
+        },
+        {
+          "titre": "Coordinatrice d'Équipe",
+          "entreprise": "Services Consulting",
+          "duree": "3 ans"
         }
       ]
     },
     {
       "id": 3,
-      "name": "Mark Rober",
-      "role": "Security",
-      "photo": "https://i.pravatar.cc/150?img=3",
-      "email": "mark.rober@worksphere.com",
-      "phone": "+212623456789",
+      "name": "arabi loubi",
+      "role": "Technicien-IT",
+      "photo": "https://i.pravatar.cc/150?img=12&u=pierre.bernard@entreprise.com",
+      "email": "pierre.bernard@entreprise.com",
+      "telephone": "06 11 22 33 44",
       "experiences": [
         {
-          "company": "SecureGuard",
-          "position": "Security Guard",
-          "duration": "5 years"
+          "titre": "Administrateur Système Senior",
+          "entreprise": "DataFlow Systems",
+          "duree": "6 ans"
+        },
+        {
+          "titre": "Technicien Réseau",
+          "entreprise": "CloudTech Solutions",
+          "duree": "3 ans"
+        },
+        {
+          "titre": "Support Informatique",
+          "entreprise": "Bureau Services Plus",
+          "duree": "2 ans"
         }
       ]
     },
     {
       "id": 4,
-      "name": "Sarah Connor",
-      "role": "Manager",
-      "photo": "https://i.pravatar.cc/150?img=4",
-      "email": "sarah.connor@worksphere.com",
-      "phone": "+212634567890",
+      "name": "zakariya hari",
+      "role": "Security",
+      "photo": "https://i.pravatar.cc/150?img=20&u=sophie.leclerc@entreprise.com",
+      "email": "sophie.leclerc@entreprise.com",
+      "telephone": "06 55 66 77 88",
       "experiences": [
         {
-          "company": "Business Corp",
-          "position": "General Manager",
-          "duration": "6 years"
+          "titre": "Chef de Sécurité",
+          "entreprise": "SecuriGroup International",
+          "duree": "4 ans"
         },
         {
-          "company": "StartUp Inc",
-          "position": "Project Manager",
-          "duration": "3 years"
+          "titre": "Agent de Sécurité",
+          "entreprise": "Protection Plus",
+          "duree": "3 ans"
+        },
+        {
+          "titre": "Vigile",
+          "entreprise": "Sécurité Événements",
+          "duree": "2 ans"
         }
       ]
     },
     {
       "id": 5,
-      "name": "John Doe",
-      "role": "CleaningStaff",
-      "photo": "https://i.pravatar.cc/150?img=5",
-      "email": "john.doe@worksphere.com",
-      "phone": "+212645678901",
+      "name": "Laurent Michel Durand",
+      "role": "Manager",
+      "photo": "https://i.pravatar.cc/150?img=33&u=laurent.durand@entreprise.com",
+      "email": "laurent.durand@entreprise.com",
+      "telephone": "06 44 55 66 77",
       "experiences": [
         {
-          "company": "CleanPro",
-          "position": "Janitor",
-          "duration": "2 years"
+          "titre": "Directeur Commercial",
+          "entreprise": "Ventes Premium SARL",
+          "duree": "7 ans"
+        },
+        {
+          "titre": "Manager Commercial",
+          "entreprise": "Groupe Distribution",
+          "duree": "5 ans"
+        },
+        {
+          "titre": "Responsable de Secteur",
+          "entreprise": "Commerce et Services",
+          "duree": "3 ans"
         }
       ]
     },
     {
       "id": 6,
-      "name": "Alice Brown",
-      "role": "Developer",
-      "photo": "https://i.pravatar.cc/150?img=5",
-      "email": "alice.brown@worksphere.com",
-      "phone": "+212656789012",
+      "name": "Nathalie Françoise Petit",
+      "role": "Reception",
+      "photo": "https://i.pravatar.cc/150?img=45&u=nathalie.petit@entreprise.com",
+      "email": "nathalie.petit@entreprise.com",
+      "telephone": "06 99 88 77 66",
       "experiences": [
         {
-          "company": "WebDev Agency",
-          "position": "Full Stack Developer",
-          "duration": "4 years"
+          "titre": "Hôtesse d'Accueil",
+          "entreprise": "Air France Hub",
+          "duree": "2 ans"
+        },
+        {
+          "titre": "Reception",
+          "entreprise": "Clinique Saint-Joseph",
+          "duree": "3 ans"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Christophe Gabriel Moreau",
+      "role": "Technicien-IT",
+      "photo": "https://i.pravatar.cc/150?img=56&u=christophe.moreau@entreprise.com",
+      "email": "christophe.moreau@entreprise.com",
+      "telephone": "06 22 33 44 55",
+      "experiences": [
+        {
+          "titre": "Développeur Full Stack",
+          "entreprise": "WebDev Agency",
+          "duree": "4 ans"
+        },
+        {
+          "titre": "Technicien Support IT",
+          "entreprise": "IT Solutions Group",
+          "duree": "2 ans"
+        },
+        {
+          "titre": "Stagiaire Développement",
+          "entreprise": "StartUp Tech",
+          "duree": "1 an"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Isabelle Catherine Vincent",
+      "role": "Security",
+      "photo": "https://i.pravatar.cc/150?img=67&u=isabelle.vincent@entreprise.com",
+      "email": "isabelle.vincent@entreprise.com",
+      "telephone": "06 77 88 99 00",
+      "experiences": [
+        {
+          "titre": "Responsable Sécurité",
+          "entreprise": "Casino de Deauville",
+          "duree": "5 ans"
+        },
+        {
+          "titre": "Agent de Surveillance",
+          "entreprise": "Groupe de Sécurité 24/7",
+          "duree": "3 ans"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Olivier Raphaël Martin",
+      "role": "Reception",
+      "photo": "https://i.pravatar.cc/150?img=78&u=olivier.martin@entreprise.com",
+      "email": "olivier.martin@entreprise.com",
+      "telephone": "06 11 00 99 88",
+      "experiences": [
+        {
+          "titre": "Réceptioniste Hotel 4 étoiles",
+          "entreprise": "Hotel Majestic",
+          "duree": "4 ans"
+        },
+        {
+          "titre": "Accueillez Client",
+          "entreprise": "Centre de Conférences",
+          "duree": "2 ans"
+        },
+        {
+          "titre": "Secrétaire de Direction",
+          "entreprise": "Conseil en Management",
+          "duree": "1 an"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Valérie Stéphanie Mercier",
+      "role": "Manager",
+      "photo": "https://i.pravatar.cc/150?img=89&u=valerie.mercier@entreprise.com",
+      "email": "valerie.mercier@entreprise.com",
+      "telephone": "06 66 77 88 99",
+      "experiences": [
+        {
+          "titre": "Gestionnaire Ressources Humaines",
+          "entreprise": "RH Plus Consulting",
+          "duree": "6 ans"
+        },
+        {
+          "titre": "Manager de Département",
+          "entreprise": "Groupe Distribution France",
+          "duree": "4 ans"
+        },
+        {
+          "titre": "Superviseur d'Équipe",
+          "entreprise": "Centre d'Appels",
+          "duree": "3 ans"
         }
       ]
     }
@@ -110,12 +240,7 @@
     {
       "id": 1,
       "name": "Conference Room",
-      "allowedRoles": [
-        "CleaningStaff",
-        "Manager",
-        "IT_Technician",
-        "Developer"
-      ],
+      "allowedRoles": ["Manager", "Technicien-IT", "Developer"],
       "capacity": 10,
       "isRestricted": false,
       "description": "Space for meetings and presentations"
@@ -123,15 +248,15 @@
     {
       "id": 2,
       "name": "Reception",
-      "allowedRoles": ["Receptionist", "CleaningStaff", "Manager"],
+      "allowedRoles": ["Reception", "Manager"],
       "capacity": 15,
       "isRestricted": false,
       "description": "Visitor reception area - Receptionists only"
     },
     {
       "id": 3,
-      "name": "Server Room",
-      "allowedRoles": ["IT_Technician", "Manager"],
+      "name": "Serveur Room",
+      "allowedRoles": ["Technicien-IT", "Manager"],
       "capacity": 5,
       "isRestricted": true,
       "description": "IT infrastructure - ITtechnicians only"
@@ -139,7 +264,7 @@
     {
       "id": 4,
       "name": "Security Room",
-      "allowedRoles": ["Security", "Manager", "IT_Technician"],
+      "allowedRoles": ["Security", "Manager", "Technicien-IT"],
       "capacity": 2,
       "isRestricted": true,
       "description": "Monitoring center - Security Guards only"
@@ -147,14 +272,14 @@
     {
       "id": 5,
       "name": "Staff Room",
-      "allowedRoles": ["Security", "Manager", "IT_Technician", "CleaningStaff"],
+      "allowedRoles": ["Security", "Manager", "Technicien-IT"],
       "capacity": 15,
       "isRestricted": false,
       "description": "Break room - Accessible to all staff"
     },
     {
       "id": 6,
-      "name": "Archive Room",
+      "name": "Archives Room",
       "allowedRoles": ["Manager"],
       "capacity": 5,
       "isRestricted": true,
