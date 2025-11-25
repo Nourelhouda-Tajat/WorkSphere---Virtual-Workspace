@@ -513,3 +513,446 @@ dialog{
 .close-cv-btn:hover {
   background: darkred;
 }
+/* ============================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+============================================ */
+
+/* ========== PETIT ÉCRAN D'ORDINATEUR (1024px - 1279px) ========== */
+@media screen and (max-width: 1279px) and (min-width: 1024px) {
+    .container {
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .first_box {
+        width: 280px;
+    }
+    
+    .floor_grid {
+        grid-template-columns: 25vw repeat(3, 13vw);
+        grid-template-rows: repeat(3, 160px);
+        gap: 8px;
+    }
+    
+    header h1 {
+        font-size: 24px;
+    }
+    
+    header span {
+        font-size: 14px;
+    }
+}
+
+/* ========== TABLETTE PORTRAIT (768px - 1023px) ========== */
+@media screen and (max-width: 1023px) and (min-width: 768px) and (orientation: portrait) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+    }
+    
+    .first_box {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .second_box {
+        width: 100%;
+    }
+    
+    .floor_grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 200px);
+        gap: 15px;
+        grid-template-areas:
+            "zone_conference zone_reception"
+            "zone_archive zone_security"
+            "zone_staff zone_serveur";
+    }
+    
+    .profile {
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    .img_profil {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+    
+    header h1 {
+        font-size: 22px;
+    }
+    
+    header span {
+        font-size: 13px;
+    }
+}
+
+/* ========== MOBILE PAYSAGE (768px - 1023px) ========== */
+@media screen and (max-width: 1023px) and (min-width: 768px) and (orientation: landscape) {
+    .container {
+        flex-direction: row;
+        gap: 12px;
+        padding: 12px;
+    }
+    
+    .first_box {
+        width: 250px;
+    }
+    
+    .floor_grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 150px);
+        gap: 10px;
+        grid-template-areas:
+            "zone_conference zone_reception zone_archive"
+            "zone_security zone_staff zone_serveur";
+    }
+    
+    .profile {
+        padding: 10px;
+        gap: 10px;
+    }
+    
+    .img_profil {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    header {
+        height: 60px;
+        padding: 0 20px;
+    }
+    
+    header h1 {
+        font-size: 20px;
+    }
+    
+    header span {
+        font-size: 12px;
+    }
+}
+
+/* ========== MOBILE PORTRAIT (jusqu'à 767px) ========== */
+@media screen and (max-width: 767px) {
+    header {
+        height: 60px;
+        padding: 0 15px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+    }
+    
+    header h1 {
+        font-size: 18px;
+    }
+    
+    header span {
+        font-size: 11px;
+    }
+    
+    .container {
+        flex-direction: column;
+        padding: 10px;
+        gap: 15px;
+        height: auto;
+    }
+    
+    .first_box {
+        width: 100%;
+        padding: 15px;
+    }
+    
+    .first_box h2 {
+        font-size: 18px;
+    }
+    
+    .profile {
+        padding: 10px;
+        gap: 10px;
+    }
+    
+    .img_profil {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    .info_profil h3 {
+        font-size: 14px;
+    }
+    
+    .info_profil p {
+        font-size: 12px;
+    }
+    
+    .second_box {
+        width: 100%;
+        padding: 15px;
+    }
+    
+    .second_box h2 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+    
+    .floor_grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 150px);
+        gap: 12px;
+        grid-template-areas:
+            "zone_conference"
+            "zone_reception"
+            "zone_archive"
+            "zone_security"
+            "zone_staff"
+            "zone_serveur";
+    }
+    
+    .zone_conference,
+    .zone_reception,
+    .zone_archive,
+    .zone_security,
+    .zone_staff,
+    .zone_serveur {
+        padding: 15px;
+    }
+    
+    .zone_conference h3,
+    .zone_reception h3,
+    .zone_archive h3,
+    .zone_security h3,
+    .zone_staff h3,
+    .zone_serveur h3 {
+        font-size: 16px;
+    }
+    
+    /* Modal responsive */
+    .modal-overlay {
+        width: 95%;
+        max-width: 100%;
+    }
+    
+    .modal-header {
+        padding: 20px 15px;
+    }
+    
+    .modal-header h2 {
+        font-size: 20px;
+    }
+    
+    .modal-body {
+        padding: 20px 15px;
+    }
+    
+    .form-group input,
+    .form-group select {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    .photo-preview {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .experience-section {
+        padding: 15px;
+    }
+    
+    .exp-input {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+    
+    .modal-footer {
+        padding: 15px;
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 12px;
+    }
+    
+    /* Dialog CV responsive */
+    .dialog-cv {
+        width: 95%;
+        max-width: 100%;
+        padding: 15px;
+    }
+    
+    #cvContainer img {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    
+    #cvContainer h2 {
+        font-size: 18px !important;
+    }
+    
+    #cvContainer h3 {
+        font-size: 16px;
+    }
+    
+    #cvContainer strong {
+        font-size: 14px;
+    }
+    
+    /* Assigned cards responsive */
+    .assigned_card {
+        padding: 6px;
+        gap: 8px;
+    }
+    
+    .assigned_photo {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    .assigned_info h4 {
+        font-size: 12px;
+    }
+    
+    .assigned_info p {
+        font-size: 11px;
+    }
+    
+    .remove_assigned {
+        width: 18px !important;
+        height: 18px !important;
+        font-size: 12px;
+    }
+}
+
+/* ========== TABLETTE PAYSAGE (1024px - 1279px) ========== */
+@media screen and (max-width: 1279px) and (min-width: 1024px) and (orientation: landscape) {
+    .container {
+        gap: 15px;
+    }
+    
+    .first_box {
+        width: 260px;
+    }
+    
+    .floor_grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 180px);
+        gap: 12px;
+        grid-template-areas:
+            "zone_conference zone_reception zone_archive"
+            "zone_security zone_staff zone_serveur";
+    }
+}
+
+/* ========== TRÈS PETITS MOBILES (max 360px) ========== */
+@media screen and (max-width: 360px) {
+    header h1 {
+        font-size: 16px;
+    }
+    
+    header span {
+        font-size: 10px;
+    }
+    
+    .first_box {
+        padding: 12px;
+    }
+    
+    .profile {
+        padding: 8px;
+        gap: 8px;
+    }
+    
+    .img_profil {
+        width: 35px;
+        height: 35px;
+        font-size: 12px;
+    }
+    
+    .info_profil h3 {
+        font-size: 13px;
+    }
+    
+    .info_profil p {
+        font-size: 11px;
+    }
+    
+    .floor_grid {
+        grid-template-rows: repeat(6, 130px);
+        gap: 10px;
+    }
+    
+    .modal-header h2 {
+        font-size: 18px;
+    }
+    
+    .form-group label {
+        font-size: 13px;
+    }
+}
+
+/* ========== AMÉLIORATION GLOBALE RESPONSIVE ========== */
+@media screen and (max-width: 1023px) {
+    /* Amélioration des zones */
+    [class*="zone_"] i {
+        top: 10px;
+        right: 10px;
+        font-size: 18px;
+    }
+    
+    [class*="zone_"] h3 {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+    
+    /* Amélioration du modal d'assignation */
+    .menu_unassigned {
+        max-width: 90vw;
+    }
+    
+    .list_worker .profile {
+        padding: 10px;
+    }
+    
+    .dialog-header h2 {
+        font-size: 18px;
+    }
+    
+    .close-dialog-zone {
+        font-size: 22px;
+    }
+}
+
+/* ========== AJUSTEMENT DES BOUTONS ========== */
+@media screen and (max-width: 767px) {
+    #add_worker {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .add-experience-btn {
+        font-size: 13px;
+        padding: 10px 15px;
+    }
+    
+    .remove-exp {
+        margin-left: auto !important;
+        padding: 5px 10px;
+    }
+}
+
+/* ========== AMÉLIORATION DU SCROLL ========== */
+@media screen and (max-width: 767px) {
+    .modal {
+        max-height: 85vh;
+    }
+    
+    .experience-section {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+}

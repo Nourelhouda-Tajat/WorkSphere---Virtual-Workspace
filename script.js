@@ -233,17 +233,19 @@ function displayUnassignedStaff() {
     const card = document.createElement("div");
     card.classList.add("profile");
 
+    const photoUrl =
+      emp.photo || "https://cdn-icons-png.flaticon.com/512/6932/6932544.png";
+
     card.innerHTML = `
       <div class="img_profil">
-        <img src="${emp.photo}" alt="${emp.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        <img src="${photoUrl}" alt="${emp.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
       </div>
       <div class="info_profil">
         <h3>${emp.name}</h3>
         <p>${emp.role}</p>
       </div>
       <span><i class="fa-solid fa-xmark icone_close"></i></span>
-          
-      `;
+    `;
 
     // Bouton de suppression de l'employé
     const supp_profil = card.querySelector(".icone_close");
@@ -278,9 +280,10 @@ function displayZoneAssignments(zoneElement) {
   assigned.forEach((emp) => {
     const card = document.createElement("div");
     card.classList.add("assigned_card");
-
+    const photoUrl =
+      emp.photo || "https://cdn-icons-png.flaticon.com/512/6932/6932544.png";
     card.innerHTML = `
-      <img src="${emp.photo}" alt="${emp.name}" class="assigned_photo" style="width: 50px; height: 50px; border-radius: 50%; cursor: pointer; object-fit: cover;">
+      <img src="${photoUrl}" alt="${emp.name}" class="assigned_photo" style="width: 50px; height: 50px; border-radius: 50%; cursor: pointer; object-fit: cover;">
       <button class="fa-solid fa-xmark remove_assigned" style="position: absolute; top: 5px; right: 5px; background: red; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer;"></button>
     `;
 
@@ -292,7 +295,9 @@ function displayZoneAssignments(zoneElement) {
 
     // Bouton de suppression
     card.querySelector(".remove_assigned").addEventListener("click", () => {
-      assignments[zoneName] = assignments[zoneName].filter((e) => e.id !== emp.id);
+      assignments[zoneName] = assignments[zoneName].filter(
+        (e) => e.id !== emp.id
+      );
       employees.push(emp);
       displayUnassignedStaff();
       displayZoneAssignments(zoneElement);
@@ -312,7 +317,7 @@ function displayZoneAssignments(zoneElement) {
 function showCV(emp) {
   const dialogCV = document.getElementById("dialogCV");
   const cvContainer = document.getElementById("cvContainer");
-  
+
   // Construction des expériences
   let experiencesHTML = "";
   if (emp.experiences && emp.experiences.length > 0) {
@@ -327,23 +332,23 @@ function showCV(emp) {
       `;
     });
   }
-  
+
   // Remplir le contenu du CV
   cvContainer.innerHTML = `
     <div style="text-align: center; margin-bottom: 20px;">
-      <img src="${emp.photo}" alt="${emp.name}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+      <img src="${photoUrl}" alt="${emp.name}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
       <h2 style="margin: 10px 0;">${emp.name}</h2>
       <p style="color: #666; font-size: 18px;">${emp.role}</p>
     </div>
     
     <div style="margin-bottom: 15px;">
-      <strong>📧 Email:</strong> ${emp.email}<br>
-      <strong>📞 Téléphone:</strong> ${emp.telephone}
+      <strong>Email:</strong> ${emp.email}<br>
+      <strong>Téléphone:</strong> ${emp.telephone}
     </div>
     
     ${experiencesHTML}
   `;
-  
+
   dialogCV.showModal();
 }
 
@@ -351,18 +356,17 @@ function showCV(emp) {
 document.addEventListener("DOMContentLoaded", () => {
   const dialogCV = document.getElementById("dialogCV");
   const closeBtn = document.querySelector(".close-cv-btn");
-  
+
   closeBtn.addEventListener("click", () => {
     dialogCV.close();
   });
-  
-   dialogCV.addEventListener("click", (e) => {
+
+  dialogCV.addEventListener("click", (e) => {
     if (e.target === dialogCV) {
       dialogCV.close();
     }
   });
-}); 
-
+});
 
 // ============================================
 // GESTION DES ASSIGNATIONS DE ZONES
@@ -401,9 +405,11 @@ addBtnFloor.forEach((addbtn) => {
       card.classList.add("profile");
       card.style.cursor = "pointer";
 
+      const photoUrl =
+        emp.photo || "https://cdn-icons-png.flaticon.com/512/6932/6932544.png";
       card.innerHTML = `
         <div class="img_profil">
-          <img src="${emp.photo}" alt="${emp.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+          <img src="${photoUrl}" alt="${emp.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
         </div>
         <div class="info_profil">
           <h3>${emp.name}</h3>
