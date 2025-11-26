@@ -637,6 +637,7 @@ dialog{
 }
 
 /* ========== MOBILE PORTRAIT (jusqu'à 767px) ========== */
+/* ========== MOBILE PORTRAIT (jusqu'à 767px) ========== */
 @media screen and (max-width: 767px) {
     header {
         height: 60px;
@@ -655,7 +656,7 @@ dialog{
     }
     
     .container {
-        flex-direction: column;
+        flex-direction: column-reverse; /* INVERSÉ ICI */
         padding: 10px;
         gap: 15px;
         height: auto;
@@ -664,6 +665,12 @@ dialog{
     .first_box {
         width: 100%;
         padding: 15px;
+        order: 2; /* Personnel en bas */
+    }
+    
+    .second_box {
+        width: 100%;
+        order: 1; /* Floor Plan en haut */
     }
     
     .first_box h2 {

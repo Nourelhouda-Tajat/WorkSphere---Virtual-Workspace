@@ -1,13 +1,197 @@
-// ============================================
-// ÉTAT GLOBAL DE L'APPLICATION
-// ============================================
-let employees = [];
-let zones = [];
+let employees = [
+  {
+    id: 1,
+    name: "khadija abirat",
+    role: "Reception",
+    photo: "https://i.pravatar.cc/150?img=1&u=alexis.rousseau@entreprise.com",
+    email: "alexis.rousseau@entreprise.com",
+    telephone: "06 12 34 56 78",
+    experiences: [
+      {
+        titre: "Réceptioniste Senior",
+        entreprise: "Hôtel Prestige",
+        duree: "3 ans",
+      },
+      {
+        titre: "Assistante Administrative",
+        entreprise: "Cabinet Juridique Martin",
+        duree: "2 ans",
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: "olia azzam",
+    role: "Manager",
+    photo: "https://i.pravatar.cc/150?img=5&u=marie.dubois@entreprise.com",
+    email: "marie.dubois@entreprise.com",
+    telephone: "06 87 65 43 21",
+    experiences: [
+      {
+        titre: "Directrice des Opérations",
+        entreprise: "TechCorp France",
+        duree: "5 ans",
+      },
+      {
+        titre: "Chef de Projet",
+        entreprise: "Innovation Solutions",
+        duree: "4 ans",
+      },
+      {
+        titre: "Coordinatrice d'Équipe",
+        entreprise: "Services Consulting",
+        duree: "3 ans",
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: "arabi loubi",
+    role: "Technicien-IT",
+    photo: "https://i.pravatar.cc/150?img=12&u=pierre.bernard@entreprise.com",
+    email: "pierre.bernard@entreprise.com",
+    telephone: "06 11 22 33 44",
+    experiences: [
+      {
+        titre: "Administrateur Système Senior",
+        entreprise: "DataFlow Systems",
+        duree: "6 ans",
+      },
+      {
+        titre: "Technicien Réseau",
+        entreprise: "CloudTech Solutions",
+        duree: "3 ans",
+      },
+      {
+        titre: "Support Informatique",
+        entreprise: "Bureau Services Plus",
+        duree: "2 ans",
+      },
+    ],
+  },
+  {
+    id: 4,
+    name: "zakariya hari",
+    role: "Security",
+    photo: "https://i.pravatar.cc/150?img=20&u=sophie.leclerc@entreprise.com",
+    email: "sophie.leclerc@entreprise.com",
+    telephone: "06 55 66 77 88",
+    experiences: [
+      {
+        titre: "Chef de Sécurité",
+        entreprise: "SecuriGroup International",
+        duree: "4 ans",
+      },
+      {
+        titre: "Agent de Sécurité",
+        entreprise: "Protection Plus",
+        duree: "3 ans",
+      },
+      {
+        titre: "Vigile",
+        entreprise: "Sécurité Événements",
+        duree: "2 ans",
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: "Laurent Michel Durand",
+    role: "Manager",
+    photo: "https://i.pravatar.cc/150?img=33&u=laurent.durand@entreprise.com",
+    email: "laurent.durand@entreprise.com",
+    telephone: "06 44 55 66 77",
+    experiences: [
+      {
+        titre: "Directeur Commercial",
+        entreprise: "Ventes Premium SARL",
+        duree: "7 ans",
+      },
+      {
+        titre: "Manager Commercial",
+        entreprise: "Groupe Distribution",
+        duree: "5 ans",
+      },
+      {
+        titre: "Responsable de Secteur",
+        entreprise: "Commerce et Services",
+        duree: "3 ans",
+      },
+    ],
+  },
+  {
+    id: 6,
+    name: "Nathalie Françoise Petit",
+    role: "Reception",
+    photo: "https://i.pravatar.cc/150?img=45&u=nathalie.petit@entreprise.com",
+    email: "nathalie.petit@entreprise.com",
+    telephone: "06 99 88 77 66",
+    experiences: [
+      {
+        titre: "Hôtesse d'Accueil",
+        entreprise: "Air France Hub",
+        duree: "2 ans",
+      },
+      {
+        titre: "Reception",
+        entreprise: "Clinique Saint-Joseph",
+        duree: "3 ans",
+      },
+    ],
+  },
+];
+let zones = [
+  {
+    id: 1,
+    name: "Conference Room",
+    allowedRoles: ["Manager", "Technicien-IT", "Developer"],
+    capacity: 10,
+    isRestricted: false,
+    description: "Space for meetings and presentations",
+  },
+  {
+    id: 2,
+    name: "Reception",
+    allowedRoles: ["Reception", "Manager"],
+    capacity: 15,
+    isRestricted: false,
+    description: "Visitor reception area - Receptionists only",
+  },
+  {
+    id: 3,
+    name: "Serveur Room",
+    allowedRoles: ["Technicien-IT", "Manager"],
+    capacity: 5,
+    isRestricted: true,
+    description: "IT infrastructure - ITtechnicians only",
+  },
+  {
+    id: 4,
+    name: "Security Room",
+    allowedRoles: ["Security", "Manager", "Technicien-IT"],
+    capacity: 2,
+    isRestricted: true,
+    description: "Monitoring center - Security Guards only",
+  },
+  {
+    id: 5,
+    name: "Staff Room",
+    allowedRoles: ["Security", "Manager", "Technicien-IT"],
+    capacity: 15,
+    isRestricted: false,
+    description: "Break room - Accessible to all staff",
+  },
+  {
+    id: 6,
+    name: "Archives Room",
+    allowedRoles: ["Manager"],
+    capacity: 5,
+    isRestricted: true,
+    description: "Confidential documents - Cleaning staff not allowed",
+  },
+];
 let assignments = {};
 
-// ============================================
-// ÉLÉMENTS DOM - RÉFÉRENCES
-// ============================================
 // Modal principal
 const modal = document.getElementById("modalOverlay");
 const addbtn = document.getElementById("add_worker");
@@ -37,122 +221,103 @@ const staffContainer = document.querySelector(".first_box");
 const planFloor = document.querySelector(".floor_grid");
 const addBtnFloor = document.querySelectorAll(".add_zone");
 
-// ============================================
-// EXPRESSIONS RÉGULIÈRES - VALIDATION
-// ============================================
+// Déclaration regex
 const nameRegex = /^[A-Za-z\s]{3,}$/;
 const emailRegex = /^\w+@\w+\.\w+$/;
 const phoneRegex = /^0[6-7]\s?\d{2}\s?\d{2}\s?\d{2}\s?\d{2}\s?$/;
 
-// ============================================
-// CHARGEMENT DES DONNÉES INITIALES
-// ============================================
-fetch("worker.json")
-  .then((res) => res.json())
-  .then((data) => {
-    employees = data.employees;
-    zones = data.zones;
-    displayUnassignedStaff();
-  })
-  .catch((err) => console.error("Error loading worker.json:", err));
-  console.log(employees);
+// GESTION DU MODAL PRINCIPAL
+// Ouvrir le modal
+console.log(addbtn, modal);
+addbtn.addEventListener("click", () => {
+  modal.showModal();
+});
 
-  // ============================================
-  // GESTION DU MODAL PRINCIPAL
-  // ============================================
-  // Ouvrir le modal
-  console.log(addbtn, modal);
-  addbtn.addEventListener("click", () => {
-    modal.showModal();
-  });
+// Fermer le modal - Bouton Close
+closeBtn.addEventListener("click", () => {
+  modal.close();
+  workerForm.reset();
+  photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
+});
 
-  // Fermer le modal - Bouton Close
-  closeBtn.addEventListener("click", () => {
-    modal.close();
-    workerForm.reset();
-    photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
-  });
+// Fermer le modal - Bouton Cancel
+cancelBtn.addEventListener("click", () => {
+  modal.close();
+  workerForm.reset();
+  photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
+});
 
-  // Fermer le modal - Bouton Cancel
-  cancelBtn.addEventListener("click", () => {
-    modal.close();
-    workerForm.reset();
-    photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
-  });
+// VALIDATION EN TEMPS RÉEL DES CHAMPS
+// Validation du nom
+nameInput.addEventListener("input", () => {
+  nameInput.style.borderColor = nameRegex.test(nameInput.value)
+    ? "green"
+    : "red";
+});
 
-  // ============================================
-  // VALIDATION EN TEMPS RÉEL DES CHAMPS
-  // ============================================
-  // Validation du nom
-  nameInput.addEventListener("input", () => {
-    nameInput.style.borderColor = nameRegex.test(nameInput.value)
+// Validation de l'email
+emailInput.addEventListener("input", () => {
+  emailInput.style.borderColor = emailRegex.test(emailInput.value)
+    ? "green"
+    : "red";
+});
+
+// Validation du téléphone
+phoneInput.addEventListener("input", () => {
+  if (phoneInput.value.trim() === "") {
+    phoneInput.style.borderColor = "";
+  } else {
+    phoneInput.style.borderColor = phoneRegex.test(phoneInput.value)
       ? "green"
       : "red";
-  });
+  }
+});
 
-  // Validation de l'email
-  emailInput.addEventListener("input", () => {
-    emailInput.style.borderColor = emailRegex.test(emailInput.value)
-      ? "green"
-      : "red";
-  });
+// Validation de la date de début
+startDateInput.addEventListener("input", () => {
+  startDateInput.style.borderColor = startDateInput.value ? "green" : "red";
+});
 
-  // Validation du téléphone (optionnel)
-  phoneInput.addEventListener("input", () => {
-    if (phoneInput.value.trim() === "") {
-      phoneInput.style.borderColor = "";
-    } else {
-      phoneInput.style.borderColor = phoneRegex.test(phoneInput.value)
-        ? "green"
-        : "red";
-    }
-  });
+// Validation de la date de fin
+endDateInput.addEventListener("input", () => {
+  if (endDateInput.value.trim() === "") {
+    endDateInput.style.borderColor = "";
+  } else if (
+    startDateInput.value &&
+    endDateInput.value < startDateInput.value
+  ) {
+    endDateInput.style.borderColor = "red";
+  } else {
+    endDateInput.style.borderColor = "green";
+  }
+});
 
-  // Validation de la date de début (obligatoire)
-  startDateInput.addEventListener("input", () => {
-    startDateInput.style.borderColor = startDateInput.value ? "green" : "red";
-  });
+//à modifier
+// PRÉVISUALISATION DE LA PHOTO
+photoInput.addEventListener("input", () => {
+  const url = photoInput.value.trim();
 
-  // Validation de la date de fin (optionnelle)
-  endDateInput.addEventListener("input", () => {
-    if (endDateInput.value.trim() === "") {
-      endDateInput.style.borderColor = "";
-    } else if (
-      startDateInput.value &&
-      endDateInput.value < startDateInput.value
-    ) {
-      endDateInput.style.borderColor = "red";
-    } else {
-      endDateInput.style.borderColor = "green";
-    }
-  });
+  if (url === "") {
+    photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
+    return;
+  }
 
-  // PRÉVISUALISATION DE LA PHOTO
-  photoInput.addEventListener("input", () => {
-    const url = photoInput.value.trim();
+  const img = document.createElement("img");
+  img.src = url;
+  img.alt = "Preview";
+  img.style.width = "120px";
+  img.style.height = "120px";
+  img.style.objectFit = "cover";
+  img.style.borderRadius = "8px";
 
-    if (url === "") {
-      photoPreview.innerHTML =
-        '<span class="photo-preview-placeholder"></span>';
-      return;
-    }
-
-    const img = document.createElement("img");
-    img.src = url;
-    img.alt = "Preview";
-    img.style.width = "120px";
-    img.style.height = "120px";
-    img.style.objectFit = "cover";
-    img.style.borderRadius = "8px";
-
-    photoPreview.innerHTML = "";
-    photoPreview.appendChild(img);
-  });
+  photoPreview.innerHTML = "";
+  photoPreview.appendChild(img);
+});
 // GESTION DES EXPÉRIENCES PROFESSIONNELLES
 addExpBtn.addEventListener("click", () => {
   const div = document.createElement("div");
   div.classList.add("experience-item");
-
+//à modifier
   div.innerHTML = `
   <button type="button" class="remove-exp" style="margin-left: 450px;">X</button>
     <input type="text" placeholder="Job Title" class="exp-input">
@@ -221,9 +386,7 @@ submitBtn.addEventListener("click", () => {
   photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
 });
 
-// ============================================
 // AFFICHAGE DU PERSONNEL NON ASSIGNÉ
-// ============================================
 function displayUnassignedStaff() {
   // Suppression des cartes existantes
   staffContainer.querySelectorAll(".profile").forEach((card) => card.remove());
@@ -257,9 +420,8 @@ function displayUnassignedStaff() {
   });
 }
 
-// ============================================
 // AFFICHAGE DES ASSIGNATIONS PAR ZONE
-// ============================================
+
 function displayZoneAssignments(zoneElement) {
   const zoneName = zoneElement.querySelector("h3").textContent;
   const container = zoneElement.querySelector(".assigned_list");
@@ -278,6 +440,7 @@ function displayZoneAssignments(zoneElement) {
 
   // Création des cartes pour chaque employé assigné
   assigned.forEach((emp) => {
+    //à modifier
     const card = document.createElement("div");
     card.classList.add("assigned_card");
     const photoUrl =
@@ -311,9 +474,8 @@ function displayZoneAssignments(zoneElement) {
   });
 }
 
-// ============================================
 // FONCTION D'AFFICHAGE DU CV
-// ============================================
+
 function showCV(emp) {
   const dialogCV = document.getElementById("dialogCV");
   const cvContainer = document.getElementById("cvContainer");
@@ -368,9 +530,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// ============================================
+
 // GESTION DES ASSIGNATIONS DE ZONES
-// ============================================
+
 addBtnFloor.forEach((addbtn) => {
   addbtn.addEventListener("click", (event) => {
     const zone = event.target.parentElement;
