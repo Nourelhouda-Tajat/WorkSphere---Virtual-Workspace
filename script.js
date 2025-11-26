@@ -140,35 +140,36 @@ let employees = [
     ],
   },
 ];
+
 let zones = [
   {
     id: 1,
     name: "Conference Room",
-    allowedRoles: ["Manager", "Technicien-IT", "Developer"],
-    capacity: 10,
+    allowedRoles: ["Manager", "Technicien-IT", "Developer", "Nettoyage"],
+    capacity: 5,
     isRestricted: false,
     description: "Space for meetings and presentations",
   },
   {
     id: 2,
     name: "Reception",
-    allowedRoles: ["Reception", "Manager"],
-    capacity: 15,
+    allowedRoles: ["Reception", "Manager", "Nettoyage"],
+    capacity: 3,
     isRestricted: false,
     description: "Visitor reception area - Receptionists only",
   },
   {
     id: 3,
     name: "Serveur Room",
-    allowedRoles: ["Technicien-IT", "Manager"],
-    capacity: 5,
+    allowedRoles: ["Technicien-IT", "Manager", "Nettoyage"],
+    capacity: 2,
     isRestricted: true,
     description: "IT infrastructure - ITtechnicians only",
   },
   {
     id: 4,
     name: "Security Room",
-    allowedRoles: ["Security", "Manager", "Technicien-IT"],
+    allowedRoles: ["Security", "Manager", "Nettoyage"],
     capacity: 2,
     isRestricted: true,
     description: "Monitoring center - Security Guards only",
@@ -176,8 +177,14 @@ let zones = [
   {
     id: 5,
     name: "Staff Room",
-    allowedRoles: ["Security", "Manager", "Technicien-IT"],
-    capacity: 15,
+    allowedRoles: [
+      "Security",
+      "Manager",
+      "Technicien-IT",
+      "Nettoyage",
+      "Developer",
+    ],
+    capacity: 6,
     isRestricted: false,
     description: "Break room - Accessible to all staff",
   },
@@ -185,53 +192,75 @@ let zones = [
     id: 6,
     name: "Archives Room",
     allowedRoles: ["Manager"],
-    capacity: 5,
+    capacity: 1,
     isRestricted: true,
     description: "Confidential documents - Cleaning staff not allowed",
   },
 ];
+
 let assignments = {};
 
-// Modal principal
+// SIDEBAR - AFFICHAGE DU PERSONNEL NON ASSIGNÉ ("Unassigned Staff")
+
+// Éléments DOM pour le sidebar
+const staffContainer = document.querySelector(".first_box");
+
+function displayUnassignedStaff() {
+  // Suppression des cartes existantes
+  staffContainer.querySelectorAll(".profile").forEach((card) => card.remove());
+
+  // Création des cartes pour chaque employé
+  employees.forEach((emp) => {
+    const card = document.createElement("div");
+    card.classList.add("profile");
+
+    const photoUrl =
+      emp.photo || "https://cdn-icons-png.flaticon.com/512/6932/6932544.png";
+
+    card.innerHTML = `
+      <div class="img_profil">
+        <img src="${photoUrl}" alt="${emp.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+      </div>
+      <div class="info_profil">
+        <h3>${emp.name}</h3>
+        <p>${emp.role}</p>
+      </div>
+      <span><i class="fa-solid fa-xmark icone_close"></i></span>
+    `;
+
+    // Bouton de suppression de l'employé
+    const supp_profil = card.querySelector(".icone_close");
+    supp_profil.addEventListener("click", () => {
+      card.remove();
+    });
+
+    staffContainer.insertBefore(card, document.getElementById("add_worker"));
+  });
+}
+displayUnassignedStaff();
+
+// ============================================================================
+// MODAL "ADD NEW WORKER" - OUVERTURE DU MODAL
+// ============================================================================
+
+// Éléments DOM pour le modal principal
 const modal = document.getElementById("modalOverlay");
 const addbtn = document.getElementById("add_worker");
-const cancelBtn = document.querySelector(".btn_cancel");
-const closeBtn = document.querySelector(".close_btn");
-const submitBtn = document.querySelector(".btn_addWorker");
-const workerForm = document.getElementById("workerForm");
 
-// Champs de formulaire - Informations personnelles
-const nameInput = document.getElementById("name");
-const roleInput = document.getElementById("role");
-const emailInput = document.getElementById("email");
-const phoneInput = document.getElementById("phone");
-const photoInput = document.getElementById("photo");
-const photoPreview = document.getElementById("photoPreview");
-
-// Champs de formulaire - Dates
-const startDateInput = document.getElementById("startDate");
-const endDateInput = document.getElementById("endDate");
-
-// Expérience professionnelle
-const addExpBtn = document.querySelector(".add-experience-btn");
-const expContainer = document.getElementById("experienceContainer");
-
-// Affichage du personnel et zones
-const staffContainer = document.querySelector(".first_box");
-const planFloor = document.querySelector(".floor_grid");
-const addBtnFloor = document.querySelectorAll(".add_zone");
-
-// Déclaration regex
-const nameRegex = /^[A-Za-z\s]{3,}$/;
-const emailRegex = /^\w+@\w+\.\w+$/;
-const phoneRegex = /^0[6-7]\s?\d{2}\s?\d{2}\s?\d{2}\s?\d{2}\s?$/;
-
-// GESTION DU MODAL PRINCIPAL
-// Ouvrir le modal
 console.log(addbtn, modal);
 addbtn.addEventListener("click", () => {
   modal.showModal();
 });
+
+// ============================================================================
+// MODAL "ADD NEW WORKER" - FERMETURE DU MODAL
+// ============================================================================
+
+// Éléments DOM pour la fermeture
+const cancelBtn = document.querySelector(".btn_cancel");
+const closeBtn = document.querySelector(".close_btn");
+const workerForm = document.getElementById("workerForm");
+const photoPreview = document.getElementById("photoPreview");
 
 // Fermer le modal - Bouton Close
 closeBtn.addEventListener("click", () => {
@@ -247,23 +276,44 @@ cancelBtn.addEventListener("click", () => {
   photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
 });
 
-// VALIDATION EN TEMPS RÉEL DES CHAMPS
-// Validation du nom
+// ============================================================================
+// MODAL "ADD NEW WORKER" - VALIDATION CHAMP NOM
+// ============================================================================
+
+// Éléments DOM et regex pour le nom
+const nameInput = document.getElementById("name");
+const nameRegex = /^[A-Za-z\s]{3,}$/;
+
 nameInput.addEventListener("input", () => {
   nameInput.style.borderColor = nameRegex.test(nameInput.value)
     ? "green"
     : "red";
 });
 
-// Validation de l'email
+// ============================================================================
+// MODAL "ADD NEW WORKER" - VALIDATION CHAMP EMAIL
+// ============================================================================
+
+// Éléments DOM et regex pour l'email
+const emailInput = document.getElementById("email");
+const emailRegex = /^\w+@\w+\.\w+$/;
+
 emailInput.addEventListener("input", () => {
   emailInput.style.borderColor = emailRegex.test(emailInput.value)
     ? "green"
     : "red";
 });
 
-// Validation du téléphone
+// ============================================================================
+// MODAL "ADD NEW WORKER" - VALIDATION CHAMP TÉLÉPHONE
+// ============================================================================
+
+// Éléments DOM et regex pour le téléphone
+const phoneInput = document.getElementById("phone");
+const phoneRegex = /^0[6-7]\s?\d{2}\s?\d{2}\s?\d{2}\s?\d{2}\s?$/;
+
 phoneInput.addEventListener("input", () => {
+  //à modifier
   if (phoneInput.value.trim() === "") {
     phoneInput.style.borderColor = "";
   } else {
@@ -273,12 +323,24 @@ phoneInput.addEventListener("input", () => {
   }
 });
 
-// Validation de la date de début
+// ============================================================================
+// MODAL "ADD NEW WORKER" - VALIDATION DATE DE DÉBUT
+// ============================================================================
+
+// Éléments DOM pour les dates
+const startDateInput = document.getElementById("startDate");
+
 startDateInput.addEventListener("input", () => {
   startDateInput.style.borderColor = startDateInput.value ? "green" : "red";
 });
 
-// Validation de la date de fin
+// ============================================================================
+// MODAL "ADD NEW WORKER" - VALIDATION DATE DE FIN
+// ============================================================================
+
+// Éléments DOM pour la date de fin
+const endDateInput = document.getElementById("endDate");
+
 endDateInput.addEventListener("input", () => {
   if (endDateInput.value.trim() === "") {
     endDateInput.style.borderColor = "";
@@ -292,8 +354,14 @@ endDateInput.addEventListener("input", () => {
   }
 });
 
+// ============================================================================
+// MODAL "ADD NEW WORKER" - PRÉVISUALISATION DE LA PHOTO
+// ============================================================================
+
+// Éléments DOM pour la photo
+const photoInput = document.getElementById("photo");
+
 //à modifier
-// PRÉVISUALISATION DE LA PHOTO
 photoInput.addEventListener("input", () => {
   const url = photoInput.value.trim();
 
@@ -313,11 +381,20 @@ photoInput.addEventListener("input", () => {
   photoPreview.innerHTML = "";
   photoPreview.appendChild(img);
 });
-// GESTION DES EXPÉRIENCES PROFESSIONNELLES
+
+// ============================================================================
+// MODAL "ADD NEW WORKER" - GESTION DES EXPÉRIENCES PROFESSIONNELLES
+// ============================================================================
+
+// Éléments DOM pour les expériences
+const addExpBtn = document.querySelector(".add-experience-btn");
+const expContainer = document.getElementById("experienceContainer");
+
+// Bouton "+" pour ajouter une expérience
 addExpBtn.addEventListener("click", () => {
   const div = document.createElement("div");
   div.classList.add("experience-item");
-//à modifier
+  //à modifier
   div.innerHTML = `
   <button type="button" class="remove-exp" style="margin-left: 450px;">X</button>
     <input type="text" placeholder="Job Title" class="exp-input">
@@ -333,7 +410,14 @@ addExpBtn.addEventListener("click", () => {
   });
 });
 
-// SOUMISSION DU FORMULAIRE - AJOUT D'EMPLOYÉ
+// ============================================================================
+// MODAL "ADD NEW WORKER" - BOUTON SUBMIT (Ajouter l'employé)
+// ============================================================================
+
+// Éléments DOM pour la soumission
+const submitBtn = document.querySelector(".btn_addWorker");
+const roleInput = document.getElementById("role");
+
 submitBtn.addEventListener("click", () => {
   // Vérification des champs obligatoires
   if (
@@ -386,152 +470,13 @@ submitBtn.addEventListener("click", () => {
   photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
 });
 
-// AFFICHAGE DU PERSONNEL NON ASSIGNÉ
-function displayUnassignedStaff() {
-  // Suppression des cartes existantes
-  staffContainer.querySelectorAll(".profile").forEach((card) => card.remove());
+// ============================================================================
+// ZONES - BOUTON "+" POUR ASSIGNER UN EMPLOYÉ À UNE ZONE
+// ============================================================================
 
-  // Création des cartes pour chaque employé
-  employees.forEach((emp) => {
-    const card = document.createElement("div");
-    card.classList.add("profile");
-
-    const photoUrl =
-      emp.photo || "https://cdn-icons-png.flaticon.com/512/6932/6932544.png";
-
-    card.innerHTML = `
-      <div class="img_profil">
-        <img src="${photoUrl}" alt="${emp.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-      </div>
-      <div class="info_profil">
-        <h3>${emp.name}</h3>
-        <p>${emp.role}</p>
-      </div>
-      <span><i class="fa-solid fa-xmark icone_close"></i></span>
-    `;
-
-    // Bouton de suppression de l'employé
-    const supp_profil = card.querySelector(".icone_close");
-    supp_profil.addEventListener("click", () => {
-      card.remove();
-    });
-
-    staffContainer.insertBefore(card, document.getElementById("add_worker"));
-  });
-}
-
-// AFFICHAGE DES ASSIGNATIONS PAR ZONE
-
-function displayZoneAssignments(zoneElement) {
-  const zoneName = zoneElement.querySelector("h3").textContent;
-  const container = zoneElement.querySelector(".assigned_list");
-
-  // Création du conteneur s'il n'existe pas
-  if (!container) {
-    const newContainer = document.createElement("div");
-    newContainer.classList.add("assigned_list");
-    zoneElement.appendChild(newContainer);
-    return displayZoneAssignments(zoneElement);
-  }
-
-  container.innerHTML = "";
-
-  const assigned = assignments[zoneName] || [];
-
-  // Création des cartes pour chaque employé assigné
-  assigned.forEach((emp) => {
-    //à modifier
-    const card = document.createElement("div");
-    card.classList.add("assigned_card");
-    const photoUrl =
-      emp.photo || "https://cdn-icons-png.flaticon.com/512/6932/6932544.png";
-    card.innerHTML = `
-      <img src="${photoUrl}" alt="${emp.name}" class="assigned_photo" style="width: 50px; height: 50px; border-radius: 50%; cursor: pointer; object-fit: cover;">
-      <button class="fa-solid fa-xmark remove_assigned" style="position: absolute; top: 5px; right: 5px; background: red; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer;"></button>
-    `;
-
-    card.style.position = "relative";
-    card.style.display = "inline-block";
-    card.style.margin = "5px";
-
-    container.appendChild(card);
-
-    // Bouton de suppression
-    card.querySelector(".remove_assigned").addEventListener("click", () => {
-      assignments[zoneName] = assignments[zoneName].filter(
-        (e) => e.id !== emp.id
-      );
-      employees.push(emp);
-      displayUnassignedStaff();
-      displayZoneAssignments(zoneElement);
-    });
-
-    // Clic sur l'image pour voir le CV
-    const photo = card.querySelector(".assigned_photo");
-    photo.addEventListener("click", () => {
-      showCV(emp);
-    });
-  });
-}
-
-// FONCTION D'AFFICHAGE DU CV
-
-function showCV(emp) {
-  const dialogCV = document.getElementById("dialogCV");
-  const cvContainer = document.getElementById("cvContainer");
-
-  // Construction des expériences
-  let experiencesHTML = "";
-  if (emp.experiences && emp.experiences.length > 0) {
-    experiencesHTML = "<h3>Expériences professionnelles</h3>";
-    emp.experiences.forEach((exp) => {
-      experiencesHTML += `
-        <div style="margin-bottom: 15px; padding: 10px; background: #f5f5f5; border-radius: 5px;">
-          <strong>${exp.titre}</strong><br>
-          <em>${exp.entreprise}</em><br>
-          <span style="color: #666;">Durée: ${exp.duree}</span>
-        </div>
-      `;
-    });
-  }
-
-  // Remplir le contenu du CV
-  cvContainer.innerHTML = `
-    <div style="text-align: center; margin-bottom: 20px;">
-      <img src="${photoUrl}" alt="${emp.name}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
-      <h2 style="margin: 10px 0;">${emp.name}</h2>
-      <p style="color: #666; font-size: 18px;">${emp.role}</p>
-    </div>
-    
-    <div style="margin-bottom: 15px;">
-      <strong>Email:</strong> ${emp.email}<br>
-      <strong>Téléphone:</strong> ${emp.telephone}
-    </div>
-    
-    ${experiencesHTML}
-  `;
-
-  dialogCV.showModal();
-}
-
-// Fermer le dialog CV
-document.addEventListener("DOMContentLoaded", () => {
-  const dialogCV = document.getElementById("dialogCV");
-  const closeBtn = document.querySelector(".close-cv-btn");
-
-  closeBtn.addEventListener("click", () => {
-    dialogCV.close();
-  });
-
-  dialogCV.addEventListener("click", (e) => {
-    if (e.target === dialogCV) {
-      dialogCV.close();
-    }
-  });
-});
-
-
-// GESTION DES ASSIGNATIONS DE ZONES
+// Éléments DOM pour les zones
+const planFloor = document.querySelector(".floor_grid");
+const addBtnFloor = document.querySelectorAll(".add_zone");
 
 addBtnFloor.forEach((addbtn) => {
   addbtn.addEventListener("click", (event) => {
@@ -617,4 +562,119 @@ addBtnFloor.forEach((addbtn) => {
       }
     });
   });
+});
+
+// ============================================================================
+// ZONES - AFFICHAGE DES EMPLOYÉS ASSIGNÉS DANS CHAQUE ZONE
+
+function displayZoneAssignments(zoneElement) {
+  const zoneName = zoneElement.querySelector("h3").textContent;
+  const container = zoneElement.querySelector(".assigned_list");
+
+  // Création du conteneur s'il n'existe pas
+  if (!container) {
+    const newContainer = document.createElement("div");
+    newContainer.classList.add("assigned_list");
+    zoneElement.appendChild(newContainer);
+    return displayZoneAssignments(zoneElement);
+  }
+
+  container.innerHTML = "";
+
+  const assigned = assignments[zoneName] || [];
+
+  // Création des cartes pour chaque employé assigné
+  assigned.forEach((emp) => {
+    //à modifier
+    const card = document.createElement("div");
+    card.classList.add("assigned_card");
+    const photoUrl =
+      emp.photo || "https://cdn-icons-png.flaticon.com/512/6932/6932544.png";
+    card.innerHTML = `
+      <img src="${photoUrl}" alt="${emp.name}" class="assigned_photo" style="width: 50px; height: 50px; border-radius: 50%; cursor: pointer; object-fit: cover;">
+      <button class="fa-solid fa-xmark remove_assigned" style="position: absolute; top: 5px; right: 5px; background: red; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer;"></button>
+    `;
+
+    card.style.position = "relative";
+    card.style.display = "inline-block";
+    card.style.margin = "5px";
+
+    container.appendChild(card);
+
+    // Bouton de suppression
+    card.querySelector(".remove_assigned").addEventListener("click", () => {
+      assignments[zoneName] = assignments[zoneName].filter(
+        (e) => e.id !== emp.id
+      );
+      employees.push(emp);
+      displayUnassignedStaff();
+      displayZoneAssignments(zoneElement);
+    });
+
+    // Clic sur l'image pour voir le CV
+    const photo = card.querySelector(".assigned_photo");
+    photo.addEventListener("click", () => {
+      showCV(emp);
+    });
+  });
+}
+
+// ============================================================================
+// CV - AFFICHAGE DU CV D'UN EMPLOYÉ (Dialog CV)
+
+function showCV(emp) {
+  const dialogCV = document.getElementById("dialogCV");
+  const cvContainer = document.getElementById("cvContainer");
+
+  const photoUrl =
+    emp.photo || "https://cdn-icons-png.flaticon.com/512/6932/6932544.png";
+
+  // Construction des expériences
+  let experiencesHTML = "";
+  if (emp.experiences && emp.experiences.length > 0) {
+    experiencesHTML = "<h3>Expériences professionnelles</h3>";
+    emp.experiences.forEach((exp) => {
+      experiencesHTML += `
+        <div style="margin-bottom: 15px; padding: 10px; background: #f5f5f5; border-radius: 5px;">
+          <strong>${exp.titre}</strong><br>
+          <em>${exp.entreprise}</em><br>
+          <span style="color: #666;">Durée: ${exp.duree}</span>
+        </div>
+      `;
+    });
+  }
+
+  // Remplir le contenu du CV
+  cvContainer.innerHTML = `
+    <div style="text-align: center; margin-bottom: 20px;">
+      <img src="${photoUrl}" alt="${emp.name}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+      <h2 style="margin: 10px 0;">${emp.name}</h2>
+      <p style="color: #666; font-size: 18px;">${emp.role}</p>
+    </div>
+    
+    <div style="margin-bottom: 15px;">
+      <strong>Email:</strong> ${emp.email}<br>
+      <strong>Téléphone:</strong> ${emp.telephone}
+    </div>
+    
+    ${experiencesHTML}
+  `;
+
+  dialogCV.showModal();
+}
+
+// ============================================================================
+/*  FERMETURE DU DIALOG CV*/
+
+const dialogCV = document.getElementById("dialogCV");
+const closeCvBtn = document.querySelector(".close-cv-btn");
+
+closeCvBtn.addEventListener("click", () => {
+  dialogCV.close();
+});
+
+dialogCV.addEventListener("click", (e) => {
+  if (e.target === dialogCV) {
+    dialogCV.close();
+  }
 });

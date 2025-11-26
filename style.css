@@ -1,38 +1,48 @@
+/* RÉINITIALISATION */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f5f7fa;
 }
-header{
-     background-color: #2c3e50;
+
+/* HEADER */
+header {
+    background-color: #2c3e50;
     color: #ffffff;
     height: 70px;
     padding: 0 30px;
     display: flex;
     align-items: center;
     gap: 15px;
+    transition: all 0.3s;
 }
-header h1{
+
+header h1 {
     color: #ffffff;
     font-size: 28px;
     font-weight: 700;
 }
+
 header span {
     color: #95a5a6;
     font-size: 16px;
 }
 
-.container{
+/* CONTAINER PRINCIPAL */
+.container {
     padding: 20px;
     display: flex;
     gap: 20px;
-    height: 100vh;
+    min-height: calc(100vh - 70px);
 }
-.first_box{
+
+/* PANNEAU PERSONNEL */
+.first_box {
     padding: 20px;
     width: 320px;
     border: 2px solid #e0e6ed;
@@ -40,13 +50,21 @@ header span {
     background-color: #ffffff;
     color: #2c3e50;
     border-radius: 12px;
+    transition: all 0.3s;
 }
+
+.first_box:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 .first_box h2 {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 15px;
 }
-/* .first_box button{
+
+/* Bouton Ajouter */
+#add_worker {
     background-color: #27ae60;
     color: #ffffff;
     padding: 12px;
@@ -57,13 +75,17 @@ header span {
     font-weight: 600;
     cursor: pointer;
     margin-bottom: 15px;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
 }
-.first_box button:hover {
+
+#add_worker:hover {
     background-color: #229954;
     transform: translateY(-2px);
-} */
-.profile{
+    box-shadow: 0 4px 8px rgba(39, 174, 96, 0.3);
+}
+
+/* Carte Profil */
+.profile {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -73,8 +95,22 @@ header span {
     margin-bottom: 12px;
     border: 1px solid #bdc3c7;
     position: relative;
+    transition: all 0.3s;
+    opacity: 0;
+    transform: translateX(-20px);
 }
-.img_profil{
+
+.profile {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.profile:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.img_profil {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -84,9 +120,15 @@ header span {
     color: #ffffff;
     font-weight: 600;
     font-size: 18px;
-    flex-shrink: 0;
     background-color: #2c3e50;
+    overflow: hidden;
+    transition: all 0.3s;
 }
+
+.profile:hover .img_profil {
+    transform: scale(1.1);
+}
+
 .info_profil h3 {
     font-size: 15px;
     color: #2c3e50;
@@ -97,165 +139,166 @@ header span {
     font-size: 13px;
     color: #7f8c8d;
 }
-.second_box {        
+
+.icone_close {
+    cursor: pointer;
+    color: #e74c3c;
+    transition: all 0.3s;
+}
+
+.icone_close:hover {
+    color: #c0392b;
+    transform: scale(1.2);
+}
+
+/* PLAN D'ÉTAGE */
+.second_box {
+    flex: 1;
     background-color: #ffffff;
     padding: 20px;
     border-radius: 12px;
     border: 2px solid #e0e6ed;
+    transition: all 0.3s;
 }
-.second_box  h2 {
+
+.second_box h2 {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 20px;
     color: #2c3e50;
 }
+
 .floor_grid {
     display: grid;
-    grid-template-columns: 30vw repeat(3, 15vw); 
-    grid-template-rows: repeat(3, 180px); 
+    grid-template-columns: 30vw repeat(3, 15vw);
+    grid-template-rows: repeat(3, 180px);
     gap: 10px;
     grid-template-areas:
         "zone_conference . zone_archive zone_security"
         "zone_reception . . ."
-        "zone_reception . zone_staff zone_serveur"; 
+        "zone_reception . zone_staff zone_serveur";
 }
 
-.zone_conference { grid-area: zone_conference; background-color: #ffffff; }
-.zone_reception { grid-area: zone_reception;background-color: #ffffff; }
-.zone_archive { grid-area: zone_archive; background-color: #ffffff;}
-.zone_security { grid-area: zone_security; background-color: #ffffff;}
-.zone_staff { grid-area: zone_staff;background-color: #ffffff; }
-.zone_serveur { grid-area: zone_serveur;background-color: #ffffff; }
-/* Conference Room - Green */
+/* Zones */
+[class*="zone_"] {
+    border-radius: 8px;
+    border: 2px solid;
+    padding: 15px;
+    position: relative;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+[class*="zone_"]:hover {
+    transform: translateY(-5px);
+}
+
+[class*="zone_"] h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+[class*="zone_"] i {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+[class*="zone_"] i:hover {
+    transform: rotate(90deg) scale(1.2);
+}
+
+/* Zones spécifiques */
 .zone_conference {
+    grid-area: zone_conference;
     background-color: #e8f5e9;
     border-color: #4caf50;
-    position: relative;
-    padding: 5%;
 }
 .zone_conference:hover {
     background-color: #c8e6c9;
     box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
 }
-.zone_conference i {
-    color: #4caf50;
-    position: absolute;
-    top:1vw;
-    right: 1vw;
-}
+.zone_conference i { color: #4caf50; }
 
-/* Reception - Orange */
 .zone_reception {
+    grid-area: zone_reception;
     background-color: #fff3e0;
     border-color: #ff9800;
-    position: relative;
-    padding: 5%;
 }
 .zone_reception:hover {
     background-color: #ffe0b2;
     box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
 }
-.zone_reception i {
-    color: #ff9800;
-    position: absolute;
-    top:1vw;
-    right: 1vw;
-    cursor: pointer;
+.zone_reception i { color: #ff9800; }
 
-}
-
-/* Server Room - Blue */
 .zone_serveur {
+    grid-area: zone_serveur;
     background-color: #e3f2fd;
     border-color: #2196f3;
-    position: relative;
-    padding: 5%;
 }
 .zone_serveur:hover {
     background-color: #bbdefb;
     box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
 }
-.zone_serveur i {
-    color: #2196f3;
-    position: absolute;
-    top:1vw;
-    right: 1vw;
-    cursor: pointer;
-}
+.zone_serveur i { color: #2196f3; }
 
-/* Security Room - Pink */
 .zone_security {
+    grid-area: zone_security;
     background-color: #fce4ec;
     border-color: #e91e63;
-    position: relative;
-    padding: 5%;
 }
 .zone_security:hover {
     background-color: #f8bbd0;
     box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
 }
-.zone_security i {
-    color: #e91e63;
-    position: absolute;
-    top:1vw;
-    right: 1vw;
-    cursor: pointer;
-}
+.zone_security i { color: #e91e63; }
 
-/* Staff Room - Purple */
 .zone_staff {
+    grid-area: zone_staff;
     background-color: #f3e5f5;
     border-color: #9c27b0;
-    position: relative;
-    padding: 5%;
 }
 .zone_staff:hover {
     background-color: #e1bee7;
     box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
 }
-.zone_staff i {
-    color: #9c27b0;
-    position: absolute;
-    top:1vw;
-    right: 1vw;
-    cursor: pointer;
-}
+.zone_staff i { color: #9c27b0; }
 
-/* Archives Room - Brown */
 .zone_archive {
+    grid-area: zone_archive;
     background-color: #efebe9;
     border-color: #795548;
-    position: relative;
-    padding: 5%;
-    width: 15vw;
-    cursor: pointer;
-
 }
 .zone_archive:hover {
     background-color: #d7ccc8;
     box-shadow: 0 4px 12px rgba(121, 85, 72, 0.3);
 }
-.zone_archive i {
-    color: #795548;
-    position: absolute;
-    top:1vw;
-    right: 1vw;
-    cursor: pointer;
+.zone_archive i { color: #795548; }
 
-}
-
-/* ========== MODAL STYLES ========== */
-
+/* MODAL */
 .modal-overlay {
     border: none;
     padding: 0;
     background: transparent;
     max-width: 600px;
     width: 90%;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.3s;
+}
+
+.modal-overlay[open] {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .modal-overlay::backdrop {
     background: rgba(0, 0, 0, 0.6);
+    transition: opacity 0.3s;
 }
 
 .modal {
@@ -265,7 +308,6 @@ header span {
     overflow-y: auto;
 }
 
-/* Modal Header */
 .modal-header {
     background: #2c3e50;
     color: white;
@@ -282,7 +324,7 @@ header span {
 }
 
 .close-btn {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     border: none;
     color: white;
     width: 40px;
@@ -290,17 +332,20 @@ header span {
     border-radius: 50%;
     font-size: 28px;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
 .close-btn:hover {
-    background: rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
 }
-dialog{
+
+dialog {
     justify-self: center;
     align-items: center;
     margin-top: 50px;
 }
-/* Modal Body */
+
 .modal-body {
     padding: 30px;
 }
@@ -325,15 +370,16 @@ dialog{
     border-radius: 8px;
     font-size: 16px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s;
 }
 
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
     border-color: #667eea;
+    box-shadow: 0 0 8px rgba(102, 126, 234, 0.2);
 }
 
-/* Photo Preview */
 .photo-preview {
     width: 120px;
     height: 120px;
@@ -344,6 +390,12 @@ dialog{
     align-items: center;
     justify-content: center;
     border: 4px solid #e0e6ed;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.photo-preview:hover {
+    transform: scale(1.05);
 }
 
 .photo-preview-placeholder {
@@ -351,7 +403,6 @@ dialog{
     font-size: 48px;
 }
 
-/* Experience Section */
 .experience-section {
     background: #f8f9fa;
     padding: 20px;
@@ -364,6 +415,14 @@ dialog{
     border-radius: 8px;
     margin-bottom: 15px;
     border: 2px solid #e0e6ed;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s;
+}
+
+.experience-item {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .exp-input {
@@ -374,6 +433,7 @@ dialog{
     margin-bottom: 10px;
     font-size: 14px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s;
 }
 
 .exp-input:focus {
@@ -391,24 +451,30 @@ dialog{
     font-size: 14px;
     font-weight: 600;
     width: 100%;
+    transition: all 0.3s;
 }
 
 .add-experience-btn:hover {
     background: #2980b9;
+    transform: translateY(-2px);
 }
 
-.remove-experience-btn {
+.remove-exp {
     background: #e74c3c;
     color: white;
     border: none;
-    padding: 6px 15px;
+    padding: 6px 12px;
     border-radius: 6px;
     cursor: pointer;
     font-size: 12px;
-    margin-top: 10px;
+    transition: all 0.3s;
 }
 
-/* Modal Footer */
+.remove-exp:hover {
+    background: #c0392b;
+    transform: scale(1.1);
+}
+
 .modal-footer {
     padding: 20px 30px;
     background: #f8f9fa;
@@ -416,7 +482,6 @@ dialog{
     display: flex;
     gap: 15px;
     justify-content: flex-end;
-    
 }
 
 .btn {
@@ -426,140 +491,146 @@ dialog{
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
-.btn-primary {
+.btn_addWorker {
     background: #27ae60;
     color: white;
 }
 
-.btn-primary:hover {
+.btn_addWorker:hover {
     background: #229954;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(39, 174, 96, 0.3);
 }
 
-.btn-secondary {
+.btn_cancel {
     background: #95a5a6;
     color: white;
 }
 
-.btn-secondary:hover {
+.btn_cancel:hover {
     background: #7f8c8d;
+    transform: translateY(-2px);
 }
 
+/* ASSIGNED CARDS */
 .assigned_list {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .assigned_card {
-  display: flex;
-  align-items: center;
-  background: #f1f1f1;
-  padding: 8px;
-  border-radius: 6px;
-  gap: 10px;
+    display: flex;
+    align-items: center;
+    background: #f1f1f1;
+    padding: 8px;
+    border-radius: 6px;
+    gap: 10px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.assigned_card:hover {
+    background: #e0e0e0;
+    transform: translateX(5px);
 }
 
 .assigned_photo {
-  width: 45px;
-  height: 45px;
-  border-radius: 6px;
-  object-fit: cover;
+    width: 45px;
+    height: 45px;
+    border-radius: 6px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
-.assigned_info h4 {
-  margin: 0;
-  font-size: 14px;
-}
-.assigned_info p {
-  margin: 0;
-  font-size: 12px;
-  opacity: 0.7;
-}
-.remove_assigned{
-    margin-left: 250px;
+.assigned_photo:hover {
+    transform: scale(1.1);
 }
 
-/* Dialog CV */
+.remove_assigned {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.remove_assigned:hover {
+    background: darkred;
+    transform: scale(1.2);
+}
+
+/* DIALOG CV */
 .dialog-cv {
-  padding: 20px;
-  border-radius: 10px;
-  border: 2px solid #333;
-  max-width: 500px;
-  width: 90%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #333;
+    max-width: 500px;
+    width: 90%;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.3s;
+}
+
+.dialog-cv[open] {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .cv-content {
-  position: relative;
+    position: relative;
 }
 
 .close-cv-btn {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background: red;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: bold;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.3s;
 }
 
 .close-cv-btn:hover {
-  background: darkred;
+    background: darkred;
+    transform: rotate(90deg) scale(1.1);
 }
-/* ============================================
-   RESPONSIVE DESIGN - MEDIA QUERIES
-============================================ */
 
-/* ========== PETIT ÉCRAN D'ORDINATEUR (1024px - 1279px) ========== */
-@media screen and (max-width: 1279px) and (min-width: 1024px) {
-    .container {
-        gap: 15px;
-        padding: 15px;
-    }
-    
-    .first_box {
-        width: 280px;
-    }
-    
+/* RESPONSIVE - PETIT ÉCRAN PC (1024-1279px) */
+@media (max-width: 1279px) and (min-width: 1024px) {
+    .container { gap: 15px; padding: 15px; }
+    .first_box { width: 280px; }
     .floor_grid {
         grid-template-columns: 25vw repeat(3, 13vw);
         grid-template-rows: repeat(3, 160px);
         gap: 8px;
     }
-    
-    header h1 {
-        font-size: 24px;
-    }
-    
-    header span {
-        font-size: 14px;
-    }
+    header h1 { font-size: 24px; }
+    header span { font-size: 14px; }
 }
 
-/* ========== TABLETTE PORTRAIT (768px - 1023px) ========== */
-@media screen and (max-width: 1023px) and (min-width: 768px) and (orientation: portrait) {
-    .container {
-        flex-direction: column;
-        height: auto;
-        padding: 15px;
-    }
-    
-    .first_box {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    
-    .second_box {
-        width: 100%;
-    }
-    
+/* RESPONSIVE - TABLETTE PORTRAIT (768-1023px) */
+@media (max-width: 1023px) and (min-width: 768px) and (orientation: portrait) {
+    .container { flex-direction: column; min-height: auto; padding: 15px; }
+    .first_box { width: 100%; margin-bottom: 20px; }
+    .second_box { width: 100%; }
     .floor_grid {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 200px);
@@ -569,39 +640,30 @@ dialog{
             "zone_archive zone_security"
             "zone_staff zone_serveur";
     }
-    
-    .profile {
-        padding: 12px;
+    .profile { padding: 12px; gap: 12px; }
+    .img_profil { width: 45px; height: 45px; font-size: 16px; }
+    header h1 { font-size: 22px; }
+    header span { font-size: 13px; }
+}
+
+/* RESPONSIVE - TABLETTE PAYSAGE (1024-1279px) */
+@media (max-width: 1279px) and (min-width: 1024px) and (orientation: landscape) {
+    .container { gap: 15px; }
+    .first_box { width: 260px; }
+    .floor_grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 180px);
         gap: 12px;
-    }
-    
-    .img_profil {
-        width: 45px;
-        height: 45px;
-        font-size: 16px;
-    }
-    
-    header h1 {
-        font-size: 22px;
-    }
-    
-    header span {
-        font-size: 13px;
+        grid-template-areas:
+            "zone_conference zone_reception zone_archive"
+            "zone_security zone_staff zone_serveur";
     }
 }
 
-/* ========== MOBILE PAYSAGE (768px - 1023px) ========== */
-@media screen and (max-width: 1023px) and (min-width: 768px) and (orientation: landscape) {
-    .container {
-        flex-direction: row;
-        gap: 12px;
-        padding: 12px;
-    }
-    
-    .first_box {
-        width: 250px;
-    }
-    
+/* RESPONSIVE - MOBILE PAYSAGE (768-1023px) */
+@media (max-width: 1023px) and (min-width: 768px) and (orientation: landscape) {
+    .container { flex-direction: row; gap: 12px; padding: 12px; }
+    .first_box { width: 250px; }
     .floor_grid {
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, 150px);
@@ -610,101 +672,38 @@ dialog{
             "zone_conference zone_reception zone_archive"
             "zone_security zone_staff zone_serveur";
     }
-    
-    .profile {
-        padding: 10px;
-        gap: 10px;
-    }
-    
-    .img_profil {
-        width: 40px;
-        height: 40px;
-        font-size: 14px;
-    }
-    
-    header {
-        height: 60px;
-        padding: 0 20px;
-    }
-    
-    header h1 {
-        font-size: 20px;
-    }
-    
-    header span {
-        font-size: 12px;
-    }
+    .profile { padding: 10px; gap: 10px; }
+    .img_profil { width: 40px; height: 40px; font-size: 14px; }
+    header { height: 60px; padding: 0 20px; }
+    header h1 { font-size: 20px; }
+    header span { font-size: 12px; }
 }
 
-/* ========== MOBILE PORTRAIT (jusqu'à 767px) ========== */
-/* ========== MOBILE PORTRAIT (jusqu'à 767px) ========== */
-@media screen and (max-width: 767px) {
+/* RESPONSIVE - MOBILE PORTRAIT (<767px) */
+@media (max-width: 767px) {
     header {
-        height: 60px;
-        padding: 0 15px;
+        height: auto;
+        padding: 15px;
         flex-direction: column;
-        justify-content: center;
         gap: 5px;
     }
-    
-    header h1 {
-        font-size: 18px;
-    }
-    
-    header span {
-        font-size: 11px;
-    }
+    header h1 { font-size: 18px; }
+    header span { font-size: 11px; }
     
     .container {
-        flex-direction: column-reverse; /* INVERSÉ ICI */
+        flex-direction: column-reverse;
         padding: 10px;
         gap: 15px;
-        height: auto;
+        min-height: auto;
     }
+    .first_box { width: 100%; padding: 15px; order: 2; }
+    .second_box { width: 100%; padding: 15px; order: 1; }
+    .first_box h2, .second_box h2 { font-size: 18px; }
     
-    .first_box {
-        width: 100%;
-        padding: 15px;
-        order: 2; /* Personnel en bas */
-    }
-    
-    .second_box {
-        width: 100%;
-        order: 1; /* Floor Plan en haut */
-    }
-    
-    .first_box h2 {
-        font-size: 18px;
-    }
-    
-    .profile {
-        padding: 10px;
-        gap: 10px;
-    }
-    
-    .img_profil {
-        width: 40px;
-        height: 40px;
-        font-size: 14px;
-    }
-    
-    .info_profil h3 {
-        font-size: 14px;
-    }
-    
-    .info_profil p {
-        font-size: 12px;
-    }
-    
-    .second_box {
-        width: 100%;
-        padding: 15px;
-    }
-    
-    .second_box h2 {
-        font-size: 18px;
-        margin-bottom: 15px;
-    }
+    .profile { padding: 10px; gap: 10px; }
+    .img_profil { width: 40px; height: 40px; font-size: 14px; }
+    .info_profil h3 { font-size: 14px; }
+    .info_profil p { font-size: 12px; }
     
     .floor_grid {
         grid-template-columns: 1fr;
@@ -718,248 +717,46 @@ dialog{
             "zone_staff"
             "zone_serveur";
     }
+    [class*="zone_"] { padding: 15px; width: 100%; min-height: 150px; }
+    [class*="zone_"] h3 { font-size: 16px; margin: 0; }
+    [class*="zone_"] i { top: 15px; right: 15px; font-size: 24px; }
     
-    .zone_conference,
-    .zone_reception,
-    .zone_archive,
-    .zone_security,
-    .zone_staff,
-    .zone_serveur {
-        padding: 15px;
-    }
+    .modal-overlay { width: 95%; max-width: 100%; }
+    .modal-header { padding: 20px 15px; }
+    .modal-header h2 { font-size: 20px; }
+    .modal-body { padding: 20px 15px; }
+    .form-group input, .form-group select { padding: 10px 12px; font-size: 14px; }
+    .photo-preview { width: 100px; height: 100px; }
+    .experience-section { padding: 15px; }
+    .exp-input { padding: 8px 10px; font-size: 13px; }
+    .modal-footer { padding: 15px; flex-direction: column; }
+    .btn { width: 100%; padding: 12px; }
     
-    .zone_conference h3,
-    .zone_reception h3,
-    .zone_archive h3,
-    .zone_security h3,
-    .zone_staff h3,
-    .zone_serveur h3 {
-        font-size: 16px;
-    }
+    .dialog-cv { width: 95%; max-width: 100%; padding: 15px; }
+    #cvContainer img { width: 80px; height: 80px; }
+    #cvContainer h2 { font-size: 18px; }
+    #cvContainer h3 { font-size: 16px; }
+    #cvContainer strong { font-size: 14px; }
     
-    /* Modal responsive */
-    .modal-overlay {
-        width: 95%;
-        max-width: 100%;
-    }
+    .assigned_card { padding: 6px; gap: 8px; }
+    .assigned_photo { width: 35px; height: 35px; }
+    .remove_assigned { width: 18px; height: 18px; font-size: 12px; }
     
-    .modal-header {
-        padding: 20px 15px;
-    }
-    
-    .modal-header h2 {
-        font-size: 20px;
-    }
-    
-    .modal-body {
-        padding: 20px 15px;
-    }
-    
-    .form-group input,
-    .form-group select {
-        padding: 10px 12px;
-        font-size: 14px;
-    }
-    
-    .photo-preview {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .experience-section {
-        padding: 15px;
-    }
-    
-    .exp-input {
-        padding: 8px 10px;
-        font-size: 13px;
-    }
-    
-    .modal-footer {
-        padding: 15px;
-        flex-direction: column;
-    }
-    
-    .btn {
-        width: 100%;
-        padding: 12px;
-    }
-    
-    /* Dialog CV responsive */
-    .dialog-cv {
-        width: 95%;
-        max-width: 100%;
-        padding: 15px;
-    }
-    
-    #cvContainer img {
-        width: 80px !important;
-        height: 80px !important;
-    }
-    
-    #cvContainer h2 {
-        font-size: 18px !important;
-    }
-    
-    #cvContainer h3 {
-        font-size: 16px;
-    }
-    
-    #cvContainer strong {
-        font-size: 14px;
-    }
-    
-    /* Assigned cards responsive */
-    .assigned_card {
-        padding: 6px;
-        gap: 8px;
-    }
-    
-    .assigned_photo {
-        width: 35px !important;
-        height: 35px !important;
-    }
-    
-    .assigned_info h4 {
-        font-size: 12px;
-    }
-    
-    .assigned_info p {
-        font-size: 11px;
-    }
-    
-    .remove_assigned {
-        width: 18px !important;
-        height: 18px !important;
-        font-size: 12px;
-    }
+    #add_worker { padding: 12px; font-size: 14px; }
+    .add-experience-btn { font-size: 13px; padding: 10px 15px; }
+    .remove-exp { margin-left: auto; padding: 5px 10px; }
 }
 
-/* ========== TABLETTE PAYSAGE (1024px - 1279px) ========== */
-@media screen and (max-width: 1279px) and (min-width: 1024px) and (orientation: landscape) {
-    .container {
-        gap: 15px;
-    }
-    
-    .first_box {
-        width: 260px;
-    }
-    
-    .floor_grid {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 180px);
-        gap: 12px;
-        grid-template-areas:
-            "zone_conference zone_reception zone_archive"
-            "zone_security zone_staff zone_serveur";
-    }
-}
-
-/* ========== TRÈS PETITS MOBILES (max 360px) ========== */
-@media screen and (max-width: 360px) {
-    header h1 {
-        font-size: 16px;
-    }
-    
-    header span {
-        font-size: 10px;
-    }
-    
-    .first_box {
-        padding: 12px;
-    }
-    
-    .profile {
-        padding: 8px;
-        gap: 8px;
-    }
-    
-    .img_profil {
-        width: 35px;
-        height: 35px;
-        font-size: 12px;
-    }
-    
-    .info_profil h3 {
-        font-size: 13px;
-    }
-    
-    .info_profil p {
-        font-size: 11px;
-    }
-    
-    .floor_grid {
-        grid-template-rows: repeat(6, 130px);
-        gap: 10px;
-    }
-    
-    .modal-header h2 {
-        font-size: 18px;
-    }
-    
-    .form-group label {
-        font-size: 13px;
-    }
-}
-
-/* ========== AMÉLIORATION GLOBALE RESPONSIVE ========== */
-@media screen and (max-width: 1023px) {
-    /* Amélioration des zones */
-    [class*="zone_"] i {
-        top: 10px;
-        right: 10px;
-        font-size: 18px;
-    }
-    
-    [class*="zone_"] h3 {
-        font-size: 15px;
-        margin-bottom: 8px;
-    }
-    
-    /* Amélioration du modal d'assignation */
-    .menu_unassigned {
-        max-width: 90vw;
-    }
-    
-    .list_worker .profile {
-        padding: 10px;
-    }
-    
-    .dialog-header h2 {
-        font-size: 18px;
-    }
-    
-    .close-dialog-zone {
-        font-size: 22px;
-    }
-}
-
-/* ========== AJUSTEMENT DES BOUTONS ========== */
-@media screen and (max-width: 767px) {
-    #add_worker {
-        padding: 12px;
-        font-size: 14px;
-    }
-    
-    .add-experience-btn {
-        font-size: 13px;
-        padding: 10px 15px;
-    }
-    
-    .remove-exp {
-        margin-left: auto !important;
-        padding: 5px 10px;
-    }
-}
-
-/* ========== AMÉLIORATION DU SCROLL ========== */
-@media screen and (max-width: 767px) {
-    .modal {
-        max-height: 85vh;
-    }
-    
-    .experience-section {
-        max-height: 300px;
-        overflow-y: auto;
-    }
+/* RESPONSIVE - TRÈS PETITS MOBILES (<360px) */
+@media (max-width: 360px) {
+    header h1 { font-size: 16px; }
+    header span { font-size: 10px; }
+    .first_box { padding: 12px; }
+    .profile { padding: 8px; gap: 8px; }
+    .img_profil { width: 35px; height: 35px; font-size: 12px; }
+    .info_profil h3 { font-size: 13px; }
+    .info_profil p { font-size: 11px; }
+    .floor_grid { grid-template-rows: repeat(6, 130px); gap: 10px; }
+    .modal-header h2 { font-size: 18px; }
+    .form-group label { font-size: 13px; }
 }
