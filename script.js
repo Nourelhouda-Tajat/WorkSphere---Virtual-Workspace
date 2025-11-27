@@ -148,7 +148,7 @@ let zones = [
     name: "Reception",
     allowedRoles: ["Reception", "Manager", "Nettoyage"],
     capacity: 3,
-    isRestricted: false,
+    isRestricted: true,
     description: "Visitor reception area - Receptionists only",
   },
   {
@@ -208,8 +208,7 @@ function displayUnassignedStaff() {
   employees.forEach((emp) => {
     const card = document.createElement("div");
     card.classList.add("profile");
-    const photoUrl =
-      emp.photo || defaultPhoto;
+    const photoUrl = emp.photo || defaultPhoto;
 
     card.innerHTML = `
       <div class="img_profil">
@@ -328,7 +327,7 @@ photoInput.addEventListener("input", () => {
     img.style.height = "120px";
     img.style.objectFit = "cover";
     img.style.borderRadius = "8px";
-    
+
     photoPreview.innerHTML = "";
     photoPreview.appendChild(img);
     return;
@@ -379,9 +378,9 @@ addExpBtn.addEventListener("click", () => {
   expContainer.appendChild(div);
   const startDate = div.querySelector(".exp-startdate");
   const endDate = div.querySelector(".exp-enddate");
-    startDate.addEventListener("input", () => {
+  startDate.addEventListener("input", () => {
     startDate.style.borderColor = startDate.value ? "green" : "red";
-    
+
     if (endDate.value && startDate.value && endDate.value < startDate.value) {
       endDate.style.borderColor = "red";
     } else if (endDate.value) {
@@ -389,14 +388,14 @@ addExpBtn.addEventListener("click", () => {
     }
   });
   endDate.addEventListener("input", () => {
-  if (endDate.value === "") {
-    endDate.style.borderColor = "";  
-  } else if (startDate.value && endDate.value < startDate.value) {
-    endDate.style.borderColor = "red";  
-  } else {
-    endDate.style.borderColor = "green";  
-  }
-});
+    if (endDate.value === "") {
+      endDate.style.borderColor = "";
+    } else if (startDate.value && endDate.value < startDate.value) {
+      endDate.style.borderColor = "red";
+    } else {
+      endDate.style.borderColor = "green";
+    }
+  });
 });
 
 // ============================================================================
@@ -408,7 +407,6 @@ const submitBtn = document.querySelector(".btn_addWorker");
 const roleInput = document.getElementById("role");
 const startDateInput = document.getElementById("startDate");
 const endDateInput = document.getElementById("endDate");
-
 
 submitBtn.addEventListener("click", () => {
   // Vérification des champs obligatoires
@@ -435,8 +433,8 @@ submitBtn.addEventListener("click", () => {
       experiences.push({
         titre: role,
         entreprise: company,
-        startDate:start,
-        endDate: end
+        startDate: start,
+        endDate: end,
       });
     }
   });
@@ -508,8 +506,7 @@ addBtnFloor.forEach((addbtn) => {
       card.classList.add("profile");
       card.style.cursor = "pointer";
 
-      const photoUrl =
-        emp.photo || defaultPhoto;
+      const photoUrl = emp.photo || defaultPhoto;
       card.innerHTML = `
         <div class="img_profil">
           <img src="${photoUrl}" alt="${emp.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
@@ -537,7 +534,6 @@ addBtnFloor.forEach((addbtn) => {
         employees = employees.filter((e) => e.id !== emp.id);
         displayUnassignedStaff();
         displayZoneAssignments(zone);
-        updateZoneColors();
         modalAssignement.close();
       });
 
@@ -560,6 +556,10 @@ addBtnFloor.forEach((addbtn) => {
     });
   });
 });
+
+// ============================================================================
+// FONCTION POUR METTRE À JOUR LA COULEUR DES ZONES
+// ============================================================================
 
 // ============================================================================
 // ZONES - AFFICHAGE DES EMPLOYÉS ASSIGNÉS DANS CHAQUE ZONE
@@ -586,12 +586,12 @@ function displayZoneAssignments(zoneElement) {
     card.classList.add("assigned_card");
 
     const photoUrl = emp.photo || defaultPhoto;
-    
+
     card.innerHTML = `
-      <img src="${photoUrl}" alt="${emp.name}" class="assigned_photo">
-      <button class="remove_assigned">✕</button>
+    <img src="${photoUrl}" alt="${emp.name}" class="assigned_photo">
+    <button class="remove_assigned">✕</button>
     `;
-    updateZoneColors();
+
     container.appendChild(card);
 
     // Bouton de suppression
@@ -603,7 +603,6 @@ function displayZoneAssignments(zoneElement) {
       employees.push(emp);
       displayUnassignedStaff();
       displayZoneAssignments(zoneElement);
-      updateZoneColors();
     });
 
     // Clic sur l'image pour voir le CV
@@ -611,35 +610,43 @@ function displayZoneAssignments(zoneElement) {
       showCV(emp);
     });
   });
+  updateZoneColor(zoneName);
 }
 
+function updateZoneColor(zoneName) {
+  // Trouver les informations de la zone dans le tableau
+  const zoneInfo = zones.find((z) => z.name === zoneName);
 
-function updateZoneColors() {
-  const requiredZones = {
-    "Reception": ".zone_reception",
-    "Serveur Room": ".zone_serveur",
-    "Security Room": ".zone_security",
-    "Archives Room": ".zone_archive"
-  };
+  if (!zoneInfo) return;
 
-  for (let zoneName in requiredZones) {
-    const selector = requiredZones[zoneName];
-    const zoneElement = document.querySelector(selector);
+  // Trouver l'élément DOM de la zone par son titre h3
+  const allZones = document.querySelectorAll(".floor_grid > div");
+  let zoneElement = null;
 
-    const isEmpty = !assignments[zoneName] || assignments[zoneName].length === 0;
+  allZones.forEach((zone) => {
+    const title = zone.querySelector("h3");
+    if (title && title.textContent === zoneName) {
+      zoneElement = zone;
+    }
+  });
 
-    if (isEmpty) {
-      zoneElement.style.filter = "brightness(85%)";
-      zoneElement.style.border = "3px solid #ffb3c6";
+  if (!zoneElement) return;
+
+  // Vérifier si la zone a des employés assignés
+  const hasEmployees =
+    assignments[zoneName] && assignments[zoneName].length > 0;
+
+  // Si la zone est restreinte (isRestricted === true)
+  if (zoneInfo.isRestricted) {
+    if (hasEmployees) {
+      // Si occupée → couleur normale (grise)
+      zoneElement.style.backgroundColor = "#c6cdd5";
     } else {
-      zoneElement.style.filter = "";
-      zoneElement.style.border = "none";
+      // Si vide → couleur rose
+      zoneElement.style.backgroundColor = "#fce4ec";
     }
   }
 }
-
-
-// ============================================================================
 // CV - AFFICHAGE DU CV D'UN EMPLOYÉ (Dialog CV)
 
 function showCV(emp) {
