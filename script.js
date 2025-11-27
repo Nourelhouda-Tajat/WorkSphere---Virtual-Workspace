@@ -1,141 +1,134 @@
 let employees = [
   {
     id: 1,
-    name: "khadija abirat",
+    name: "Alice Brown",
     role: "Reception",
-    photo: "https://i.pravatar.cc/150?img=1&u=alexis.rousseau@entreprise.com",
+    photo: "https://cdn-icons-png.flaticon.com/512/3135/3135823.png",
     email: "alexis.rousseau@entreprise.com",
-    telephone: "06 12 34 56 78",
+    phone: "06 12 34 56 78",
     experiences: [
       {
         titre: "Réceptioniste Senior",
         entreprise: "Hôtel Prestige",
-        duree: "3 ans",
+        startDate:"21-8-2000",
+        endDate:"5-1-2005"
       },
       {
         titre: "Assistante Administrative",
         entreprise: "Cabinet Juridique Martin",
-        duree: "2 ans",
+        startDate:"21-8-2007",
+        endDate:"5-1-2009"
       },
     ],
   },
   {
     id: 2,
-    name: "olia azzam",
+    name: "Sarah Connor",
     role: "Manager",
-    photo: "https://i.pravatar.cc/150?img=5&u=marie.dubois@entreprise.com",
+    photo: "https://cdn-icons-png.flaticon.com/512/10438/10438146.png",
     email: "marie.dubois@entreprise.com",
-    telephone: "06 87 65 43 21",
+    phone: "06 87 65 43 21",
     experiences: [
       {
         titre: "Directrice des Opérations",
         entreprise: "TechCorp France",
-        duree: "5 ans",
+        startDate:"7-2-2010",
+        endDate:"8-3-2015"
       },
       {
         titre: "Chef de Projet",
         entreprise: "Innovation Solutions",
-        duree: "4 ans",
+        startDate:"20-8-2020",
+        endDate:"5-10-2025"
       },
       {
         titre: "Coordinatrice d'Équipe",
         entreprise: "Services Consulting",
-        duree: "3 ans",
+        startDate:"1-7-2003",
+        endDate:"6-4-2009"
       },
     ],
   },
   {
     id: 3,
-    name: "arabi loubi",
+    name: "Peter Jone",
     role: "Technicien-IT",
-    photo: "https://i.pravatar.cc/150?img=12&u=pierre.bernard@entreprise.com",
+    photo: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
     email: "pierre.bernard@entreprise.com",
-    telephone: "06 11 22 33 44",
+    phone: "06 11 22 33 44",
     experiences: [
       {
         titre: "Administrateur Système Senior",
         entreprise: "DataFlow Systems",
-        duree: "6 ans",
+        startDate:"20-7-2020",
+        endDate:"5-11-2021"
       },
       {
         titre: "Technicien Réseau",
         entreprise: "CloudTech Solutions",
-        duree: "3 ans",
+        startDate:"18-6-2022",
+        endDate:"5-9-2022"
       },
       {
         titre: "Support Informatique",
         entreprise: "Bureau Services Plus",
-        duree: "2 ans",
+        startDate:"22-3-2024",
+        endDate:"5-1-2025"
       },
     ],
   },
   {
     id: 4,
-    name: "zakariya hari",
+    name: "John Doe",
     role: "Security",
-    photo: "https://i.pravatar.cc/150?img=20&u=sophie.leclerc@entreprise.com",
+    photo: "https://cdn-icons-png.flaticon.com/512/5234/5234205.png",
     email: "sophie.leclerc@entreprise.com",
-    telephone: "06 55 66 77 88",
+    phone: "06 55 66 77 88",
     experiences: [
       {
         titre: "Chef de Sécurité",
         entreprise: "SecuriGroup International",
-        duree: "4 ans",
-      },
-      {
-        titre: "Agent de Sécurité",
-        entreprise: "Protection Plus",
-        duree: "3 ans",
-      },
-      {
-        titre: "Vigile",
-        entreprise: "Sécurité Événements",
-        duree: "2 ans",
-      },
+        startDate:"21-8-2010",
+        endDate:"5-5-2015"
+      }
     ],
   },
   {
     id: 5,
     name: "Laurent Michel Durand",
     role: "Manager",
-    photo: "https://i.pravatar.cc/150?img=33&u=laurent.durand@entreprise.com",
+    photo: "https://e7.pngegg.com/pngimages/136/22/png-clipart-user-profile-computer-icons-girl-customer-avatar-angle-heroes-thumbnail.png",
     email: "laurent.durand@entreprise.com",
-    telephone: "06 44 55 66 77",
+    phone: "06 44 55 66 77",
     experiences: [
       {
         titre: "Directeur Commercial",
         entreprise: "Ventes Premium SARL",
-        duree: "7 ans",
+        startDate:"11-1-2010",
+        endDate:"7-7-2017"
       },
-      {
-        titre: "Manager Commercial",
-        entreprise: "Groupe Distribution",
-        duree: "5 ans",
-      },
-      {
-        titre: "Responsable de Secteur",
-        entreprise: "Commerce et Services",
-        duree: "3 ans",
-      },
+      
     ],
   },
   {
     id: 6,
     name: "Nathalie Françoise Petit",
     role: "Reception",
-    photo: "https://i.pravatar.cc/150?img=45&u=nathalie.petit@entreprise.com",
+    photo: "https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-female-user-profile-vector-illustration-isolated-background-women-profile-sign-business-concept_157943-38866.jpg",
     email: "nathalie.petit@entreprise.com",
-    telephone: "06 99 88 77 66",
+    phone: "06 99 88 77 66",
     experiences: [
       {
         titre: "Hôtesse d'Accueil",
         entreprise: "Air France Hub",
-        duree: "2 ans",
+        startDate:"3-4-2004",
+        endDate:"5-12-2009"
       },
       {
         titre: "Reception",
         entreprise: "Clinique Saint-Joseph",
-        duree: "3 ans",
+        startDate:"21-8-2010",
+        endDate:"5-1-2020"
       },
     ],
   },
@@ -199,6 +192,8 @@ let zones = [
 ];
 
 let assignments = {};
+// Image par défaut
+const defaultPhoto = "https://cdn-icons-png.flaticon.com/512/6932/6932544.png";
 
 // SIDEBAR - AFFICHAGE DU PERSONNEL NON ASSIGNÉ ("Unassigned Staff")
 
@@ -213,9 +208,8 @@ function displayUnassignedStaff() {
   employees.forEach((emp) => {
     const card = document.createElement("div");
     card.classList.add("profile");
-
     const photoUrl =
-      emp.photo || "https://cdn-icons-png.flaticon.com/512/6932/6932544.png";
+      emp.photo || defaultPhoto;
 
     card.innerHTML = `
       <div class="img_profil">
@@ -225,14 +219,7 @@ function displayUnassignedStaff() {
         <h3>${emp.name}</h3>
         <p>${emp.role}</p>
       </div>
-      <span><i class="fa-solid fa-xmark icone_close"></i></span>
     `;
-
-    // Bouton de suppression de l'employé
-    const supp_profil = card.querySelector(".icone_close");
-    supp_profil.addEventListener("click", () => {
-      card.remove();
-    });
 
     staffContainer.insertBefore(card, document.getElementById("add_worker"));
   });
@@ -313,44 +300,12 @@ const phoneInput = document.getElementById("phone");
 const phoneRegex = /^0[6-7]\s?\d{2}\s?\d{2}\s?\d{2}\s?\d{2}\s?$/;
 
 phoneInput.addEventListener("input", () => {
-  //à modifier
   if (phoneInput.value.trim() === "") {
     phoneInput.style.borderColor = "";
   } else {
     phoneInput.style.borderColor = phoneRegex.test(phoneInput.value)
       ? "green"
       : "red";
-  }
-});
-
-// ============================================================================
-// MODAL "ADD NEW WORKER" - VALIDATION DATE DE DÉBUT
-// ============================================================================
-
-// Éléments DOM pour les dates
-const startDateInput = document.getElementById("startDate");
-
-startDateInput.addEventListener("input", () => {
-  startDateInput.style.borderColor = startDateInput.value ? "green" : "red";
-});
-
-// ============================================================================
-// MODAL "ADD NEW WORKER" - VALIDATION DATE DE FIN
-// ============================================================================
-
-// Éléments DOM pour la date de fin
-const endDateInput = document.getElementById("endDate");
-
-endDateInput.addEventListener("input", () => {
-  if (endDateInput.value.trim() === "") {
-    endDateInput.style.borderColor = "";
-  } else if (
-    startDateInput.value &&
-    endDateInput.value < startDateInput.value
-  ) {
-    endDateInput.style.borderColor = "red";
-  } else {
-    endDateInput.style.borderColor = "green";
   }
 });
 
@@ -366,7 +321,16 @@ photoInput.addEventListener("input", () => {
   const url = photoInput.value.trim();
 
   if (url === "") {
-    photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
+    const img = document.createElement("img");
+    img.src = defaultPhoto;
+    img.alt = "Preview";
+    img.style.width = "120px";
+    img.style.height = "120px";
+    img.style.objectFit = "cover";
+    img.style.borderRadius = "8px";
+    
+    photoPreview.innerHTML = "";
+    photoPreview.appendChild(img);
     return;
   }
 
@@ -396,18 +360,43 @@ addExpBtn.addEventListener("click", () => {
   div.classList.add("experience-item");
   //à modifier
   div.innerHTML = `
-  <button type="button" class="remove-exp" style="margin-left: 450px;">X</button>
-    <input type="text" placeholder="Job Title" class="exp-input">
-    <input type="text" placeholder="Company Name" class="exp-input">
-    <input type="text" placeholder="Duration (e.g., 2020-2023)" class="exp-input">
+      <label for="company">Company Name</label>
+      <input type="text" placeholder="Company" class="exp-input exp-company">
+      <label for="role">Role</label>
+      <input type="text" placeholder="Role" class="exp-input exp-role">
+      <!-- Start Date -->
+      <div class="form-group">
+        <label for="startDate">From (Start Date) *</label>
+        <input type="date" id="startDate" class="exp-startdate" required>
+      </div>          
+      <!-- End Date -->
+      <div class="form-group">
+        <label for="endDate">To (End Date)</label>
+        <input type="date" id="endDate" class="exp-enddate" required>
+      </div>
   `;
 
   expContainer.appendChild(div);
-
-  // Bouton de suppression d'expérience
-  div.querySelector(".remove-exp").addEventListener("click", () => {
-    div.remove();
+  const startDate = div.querySelector(".exp-startdate");
+  const endDate = div.querySelector(".exp-enddate");
+    startDate.addEventListener("input", () => {
+    startDate.style.borderColor = startDate.value ? "green" : "red";
+    
+    if (endDate.value && startDate.value && endDate.value < startDate.value) {
+      endDate.style.borderColor = "red";
+    } else if (endDate.value) {
+      endDate.style.borderColor = "green";
+    }
   });
+  endDate.addEventListener("input", () => {
+  if (endDate.value === "") {
+    endDate.style.borderColor = "";  
+  } else if (startDate.value && endDate.value < startDate.value) {
+    endDate.style.borderColor = "red";  
+  } else {
+    endDate.style.borderColor = "green";  
+  }
+});
 });
 
 // ============================================================================
@@ -417,14 +406,16 @@ addExpBtn.addEventListener("click", () => {
 // Éléments DOM pour la soumission
 const submitBtn = document.querySelector(".btn_addWorker");
 const roleInput = document.getElementById("role");
+const startDateInput = document.getElementById("startDate");
+const endDateInput = document.getElementById("endDate");
+
 
 submitBtn.addEventListener("click", () => {
   // Vérification des champs obligatoires
   if (
     !nameRegex.test(nameInput.value) ||
     !emailRegex.test(emailInput.value) ||
-    !startDateInput.value ||
-    (endDateInput.value && endDateInput.value < startDateInput.value)
+    !phoneRegex.test(phoneInput.value)
   ) {
     alert("Please fill all required fields correctly.");
     return;
@@ -432,33 +423,38 @@ submitBtn.addEventListener("click", () => {
 
   // Collecte des expériences professionnelles
   const expItems = document.querySelectorAll(".experience-item");
-  let experience = [];
+  let experiences = [];
 
-  expItems.forEach((item) => {
-    const inputs = item.querySelectorAll(".exp-input");
-    if (inputs.length === 3) {
-      experience.push({
-        title: inputs[0].value,
-        company: inputs[1].value,
-        duration: inputs[2].value,
+  expItems.forEach((exp) => {
+    const company = exp.querySelector(".exp-company")?.value;
+    const role = exp.querySelector(".exp-role")?.value;
+    const start = exp.querySelector(".exp-startdate").value;
+    const end = exp.querySelector(".exp-enddate").value;
+
+    if (company.trim() !== "" || role.trim() !== "") {
+      experiences.push({
+        titre: role,
+        entreprise: company,
+        startDate:start,
+        endDate: end
       });
     }
   });
 
   // Création du nouvel employé
   const newEmployee = {
+    id: employees.length + 1,
     name: nameInput.value,
     role: roleInput.value,
-    photo: photoInput.value,
+    photo: photoInput.value || defaultPhoto,
     email: emailInput.value,
-    phone: phoneInput.value,
-    startDate: startDateInput.value,
-    endDate: endDateInput.value,
-    experience: experience,
+    phone: phoneInput.value.trim(),
+    experiences: experiences,
   };
 
   // Ajout à l'état global
   employees.push(newEmployee);
+  alert("worker add success!!!!");
 
   console.log("Employee added:", newEmployee);
   console.log("All employees:", employees);
@@ -513,7 +509,7 @@ addBtnFloor.forEach((addbtn) => {
       card.style.cursor = "pointer";
 
       const photoUrl =
-        emp.photo || "https://cdn-icons-png.flaticon.com/512/6932/6932544.png";
+        emp.photo || defaultPhoto;
       card.innerHTML = `
         <div class="img_profil">
           <img src="${photoUrl}" alt="${emp.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
@@ -541,6 +537,7 @@ addBtnFloor.forEach((addbtn) => {
         employees = employees.filter((e) => e.id !== emp.id);
         displayUnassignedStaff();
         displayZoneAssignments(zone);
+        updateZoneColors();
         modalAssignement.close();
       });
 
@@ -569,14 +566,14 @@ addBtnFloor.forEach((addbtn) => {
 
 function displayZoneAssignments(zoneElement) {
   const zoneName = zoneElement.querySelector("h3").textContent;
-  const container = zoneElement.querySelector(".assigned_list");
+  let container = zoneElement.querySelector(".assigned_list");
 
   // Création du conteneur s'il n'existe pas
   if (!container) {
     const newContainer = document.createElement("div");
     newContainer.classList.add("assigned_list");
     zoneElement.appendChild(newContainer);
-    return displayZoneAssignments(zoneElement);
+    container = newContainer;
   }
 
   container.innerHTML = "";
@@ -585,39 +582,62 @@ function displayZoneAssignments(zoneElement) {
 
   // Création des cartes pour chaque employé assigné
   assigned.forEach((emp) => {
-    //à modifier
     const card = document.createElement("div");
     card.classList.add("assigned_card");
-    const photoUrl =
-      emp.photo || "https://cdn-icons-png.flaticon.com/512/6932/6932544.png";
+
+    const photoUrl = emp.photo || defaultPhoto;
+    
     card.innerHTML = `
-      <img src="${photoUrl}" alt="${emp.name}" class="assigned_photo" style="width: 50px; height: 50px; border-radius: 50%; cursor: pointer; object-fit: cover;">
-      <button class="fa-solid fa-xmark remove_assigned" style="position: absolute; top: 5px; right: 5px; background: red; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer;"></button>
+      <img src="${photoUrl}" alt="${emp.name}" class="assigned_photo">
+      <button class="remove_assigned">✕</button>
     `;
-
-    card.style.position = "relative";
-    card.style.display = "inline-block";
-    card.style.margin = "5px";
-
+    updateZoneColors();
     container.appendChild(card);
 
     // Bouton de suppression
-    card.querySelector(".remove_assigned").addEventListener("click", () => {
+    card.querySelector(".remove_assigned").addEventListener("click", (e) => {
+      e.stopPropagation(); // Empêcher le clic sur l'image
       assignments[zoneName] = assignments[zoneName].filter(
         (e) => e.id !== emp.id
       );
       employees.push(emp);
       displayUnassignedStaff();
       displayZoneAssignments(zoneElement);
+      updateZoneColors();
     });
 
     // Clic sur l'image pour voir le CV
-    const photo = card.querySelector(".assigned_photo");
-    photo.addEventListener("click", () => {
+    card.querySelector(".assigned_photo").addEventListener("click", () => {
       showCV(emp);
     });
   });
 }
+
+
+function updateZoneColors() {
+  const requiredZones = {
+    "Reception": ".zone_reception",
+    "Serveur Room": ".zone_serveur",
+    "Security Room": ".zone_security",
+    "Archives Room": ".zone_archive"
+  };
+
+  for (let zoneName in requiredZones) {
+    const selector = requiredZones[zoneName];
+    const zoneElement = document.querySelector(selector);
+
+    const isEmpty = !assignments[zoneName] || assignments[zoneName].length === 0;
+
+    if (isEmpty) {
+      zoneElement.style.filter = "brightness(85%)";
+      zoneElement.style.border = "3px solid #ffb3c6";
+    } else {
+      zoneElement.style.filter = "";
+      zoneElement.style.border = "none";
+    }
+  }
+}
+
 
 // ============================================================================
 // CV - AFFICHAGE DU CV D'UN EMPLOYÉ (Dialog CV)
@@ -627,7 +647,7 @@ function showCV(emp) {
   const cvContainer = document.getElementById("cvContainer");
 
   const photoUrl =
-    emp.photo || "https://cdn-icons-png.flaticon.com/512/6932/6932544.png";
+    emp.photo || defaultPhoto;
 
   // Construction des expériences
   let experiencesHTML = "";
@@ -654,7 +674,7 @@ function showCV(emp) {
     
     <div style="margin-bottom: 15px;">
       <strong>Email:</strong> ${emp.email}<br>
-      <strong>Téléphone:</strong> ${emp.telephone}
+      <strong>Téléphone:</strong> ${emp.phone}
     </div>
     
     ${experiencesHTML}
@@ -665,8 +685,6 @@ function showCV(emp) {
 
 // ============================================================================
 /*  FERMETURE DU DIALOG CV*/
-
-const dialogCV = document.getElementById("dialogCV");
 const closeCvBtn = document.querySelector(".close-cv-btn");
 
 closeCvBtn.addEventListener("click", () => {

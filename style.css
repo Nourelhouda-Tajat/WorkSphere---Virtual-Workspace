@@ -206,78 +206,72 @@ header span {
     font-size: 20px;
     cursor: pointer;
     transition: all 0.3s;
+    color: #4caf50;
 }
 
-[class*="zone_"] i:hover {
-    transform: rotate(90deg) scale(1.2);
-}
+
 
 /* Zones spécifiques */
 .zone_conference {
     grid-area: zone_conference;
-    background-color: #e8f5e9;
-    border-color: #4caf50;
+    background-color: #c6cdd5;
+    border: none;
+    
 }
 .zone_conference:hover {
-    background-color: #c8e6c9;
-    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    background-color: #c6cdd5a9;
+    box-shadow: 0 4px 12px #5c5c5dbd;
 }
-.zone_conference i { color: #4caf50; }
 
 .zone_reception {
     grid-area: zone_reception;
-    background-color: #fff3e0;
-    border-color: #ff9800;
+    background-color: #fce4ec;
+    border: none;
 }
 .zone_reception:hover {
-    background-color: #ffe0b2;
-    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+    background-color: #f8bbd0;
+    box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
 }
-.zone_reception i { color: #ff9800; }
 
 .zone_serveur {
     grid-area: zone_serveur;
-    background-color: #e3f2fd;
-    border-color: #2196f3;
+    background-color: #fce4ec;
+    border: none;
 }
 .zone_serveur:hover {
-    background-color: #bbdefb;
-    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+    background-color: #f8bbd0;
+    box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
 }
-.zone_serveur i { color: #2196f3; }
 
 .zone_security {
     grid-area: zone_security;
     background-color: #fce4ec;
-    border-color: #e91e63;
+    border: none;
 }
 .zone_security:hover {
     background-color: #f8bbd0;
     box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
 }
-.zone_security i { color: #e91e63; }
 
 .zone_staff {
     grid-area: zone_staff;
-    background-color: #f3e5f5;
-    border-color: #9c27b0;
+    background-color: #c6cdd5;
+    border: none;
 }
 .zone_staff:hover {
-    background-color: #e1bee7;
-    box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+    background-color: #c6cdd5a9;
+    box-shadow: 0 4px 12px #5c5c5dbd;
 }
-.zone_staff i { color: #9c27b0; }
 
 .zone_archive {
     grid-area: zone_archive;
-    background-color: #efebe9;
-    border-color: #795548;
+    background-color: #fce4ec;
+    border: none;
 }
 .zone_archive:hover {
-    background-color: #d7ccc8;
-    box-shadow: 0 4px 12px rgba(121, 85, 72, 0.3);
+    background-color: #f8bbd0;
+    box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
 }
-.zone_archive i { color: #795548; }
 
 /* MODAL */
 .modal-overlay {
@@ -517,21 +511,17 @@ dialog {
 
 /* ASSIGNED CARDS */
 .assigned_list {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+  padding: 10px;
 }
 
 .assigned_card {
-    display: flex;
-    align-items: center;
-    background: #f1f1f1;
-    padding: 8px;
-    border-radius: 6px;
-    gap: 10px;
-    position: relative;
-    transition: all 0.3s;
+  position: relative;
+  width: 60px;
+  height: 60px;
 }
 
 .assigned_card:hover {
@@ -539,36 +529,44 @@ dialog {
     transform: translateX(5px);
 }
 
-.assigned_photo {
-    width: 45px;
-    height: 45px;
-    border-radius: 6px;
-    object-fit: cover;
-    cursor: pointer;
-    transition: all 0.3s;
+.assigned_card .assigned_photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
 }
 
 .assigned_photo:hover {
     transform: scale(1.1);
 }
 
-.remove_assigned {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: red;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    transition: all 0.3s;
+.assigned_card .remove_assigned {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #e74c3c;
+  color: white;
+  border: 2px solid white;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.remove_assigned:hover {
-    background: darkred;
-    transform: scale(1.2);
+.assigned_card .remove_assigned:hover {
+  background: #c0392b;
+  transform: scale(1.1);
 }
 
 /* DIALOG CV */
