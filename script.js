@@ -196,16 +196,14 @@ let assignments = {};
 // Image par défaut
 const defaultPhoto = "https://cdn-icons-png.flaticon.com/512/6932/6932544.png";
 
-// SIDEBAR - AFFICHAGE DU PERSONNEL NON ASSIGNÉ ("Unassigned Staff")
+// AFFICHAGE DU PERSONNEL NON ASSIGNÉ ("Unassigned Staff")
 
 // Éléments DOM pour le sidebar
 const staffContainer = document.querySelector(".first_box");
 
 function displayUnassignedStaff() {
-  // Suppression des cartes existantes
+  
   staffContainer.querySelectorAll(".profile").forEach((card) => card.remove());
-
-  // Création des cartes pour chaque employé
   employees.forEach((emp) => {
     const card = document.createElement("div");
     card.classList.add("profile");
@@ -226,11 +224,7 @@ function displayUnassignedStaff() {
 }
 displayUnassignedStaff();
 
-// ============================================================================
-// MODAL "ADD NEW WORKER" - OUVERTURE DU MODAL
-// ============================================================================
-
-// Éléments DOM pour le modal principal
+// MODAL "ADD NEW WORKER" 
 const modal = document.getElementById("modalOverlay");
 const addbtn = document.getElementById("add_worker");
 
@@ -239,35 +233,25 @@ addbtn.addEventListener("click", () => {
   modal.showModal();
 });
 
-// ============================================================================
-// MODAL "ADD NEW WORKER" - FERMETURE DU MODAL
-// ============================================================================
-
-// Éléments DOM pour la fermeture
 const cancelBtn = document.querySelector(".btn_cancel");
 const closeBtn = document.querySelector(".close_btn");
 const workerForm = document.getElementById("workerForm");
 const photoPreview = document.getElementById("photoPreview");
 
-// Fermer le modal - Bouton Close
 closeBtn.addEventListener("click", () => {
   modal.close();
   workerForm.reset();
   photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
 });
 
-// Fermer le modal - Bouton Cancel
 cancelBtn.addEventListener("click", () => {
   modal.close();
   workerForm.reset();
   photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
 });
 
-// ============================================================================
-// MODAL "ADD NEW WORKER" - VALIDATION CHAMP NOM
-// ============================================================================
 
-// Éléments DOM et regex pour le nom
+// VALIDATION CHAMP NOM
 const nameInput = document.getElementById("name");
 const nameRegex = /^[A-Za-z\s]{3,}$/;
 
@@ -277,11 +261,7 @@ nameInput.addEventListener("input", () => {
     : "red";
 });
 
-// ============================================================================
-// MODAL "ADD NEW WORKER" - VALIDATION CHAMP EMAIL
-// ============================================================================
-
-// Éléments DOM et regex pour l'email
+// VALIDATION CHAMP EMAIL
 const emailInput = document.getElementById("email");
 const emailRegex = /^\w+@\w+\.\w+$/;
 
@@ -291,11 +271,7 @@ emailInput.addEventListener("input", () => {
     : "red";
 });
 
-// ============================================================================
-// MODAL "ADD NEW WORKER" - VALIDATION CHAMP TÉLÉPHONE
-// ============================================================================
-
-// Éléments DOM et regex pour le téléphone
+//VALIDATION CHAMP TÉLÉPHONE
 const phoneInput = document.getElementById("phone");
 const phoneRegex = /^0[6-7]\s?\d{2}\s?\d{2}\s?\d{2}\s?\d{2}\s?$/;
 
@@ -309,14 +285,8 @@ phoneInput.addEventListener("input", () => {
   }
 });
 
-// ============================================================================
-// MODAL "ADD NEW WORKER" - PRÉVISUALISATION DE LA PHOTO
-// ============================================================================
-
-// Éléments DOM pour la photo
+// PRÉVISUALISATION DE LA PHOTO
 const photoInput = document.getElementById("photo");
-
-//à modifier
 photoInput.addEventListener("input", () => {
   const url = photoInput.value.trim();
 
@@ -346,15 +316,10 @@ photoInput.addEventListener("input", () => {
   photoPreview.appendChild(img);
 });
 
-// ============================================================================
-// MODAL "ADD NEW WORKER" - GESTION DES EXPÉRIENCES PROFESSIONNELLES
-// ============================================================================
-
-// Éléments DOM pour les expériences
+// GESTION DES EXPÉRIENCES PROFESSIONNELLES
 const addExpBtn = document.querySelector(".add-experience-btn");
 const expContainer = document.getElementById("experienceContainer");
 
-// Bouton "+" pour ajouter une expérience
 addExpBtn.addEventListener("click", () => {
   const div = document.createElement("div");
   div.classList.add("experience-item");
@@ -399,18 +364,13 @@ addExpBtn.addEventListener("click", () => {
   });
 });
 
-// ============================================================================
-// MODAL "ADD NEW WORKER" - BOUTON SUBMIT (Ajouter l'employé)
-// ============================================================================
-
-// Éléments DOM pour la soumission
+// BOUTON SUBMIT (Ajouter l'employé)
 const submitBtn = document.querySelector(".btn_addWorker");
 const roleInput = document.getElementById("role");
 const startDateInput = document.getElementById("startDate");
 const endDateInput = document.getElementById("endDate");
 
 submitBtn.addEventListener("click", () => {
-  // Vérification des champs obligatoires
   if (
     !nameRegex.test(nameInput.value) ||
     !emailRegex.test(emailInput.value) ||
@@ -451,7 +411,6 @@ submitBtn.addEventListener("click", () => {
     experiences: experiences,
   };
 
-  // Ajout à l'état global
   employees.push(newEmployee);
   alert("worker add success!!!!");
 
@@ -459,17 +418,12 @@ submitBtn.addEventListener("click", () => {
   console.log("All employees:", employees);
   displayUnassignedStaff();
 
-  // Fermeture du modal et réinitialisation du formulaire
   modal.close();
   workerForm.reset();
   photoPreview.innerHTML = '<span class="photo-preview-placeholder"></span>';
 });
 
-// ============================================================================
 // ZONES - BOUTON "+" POUR ASSIGNER UN EMPLOYÉ À UNE ZONE
-// ============================================================================
-
-// Éléments DOM pour les zones
 const planFloor = document.querySelector(".floor_grid");
 const addBtnFloor = document.querySelectorAll(".add_zone");
 
@@ -480,7 +434,6 @@ addBtnFloor.forEach((addbtn) => {
 
     modalAssignement.innerHTML = "";
 
-    // Création du contenu du modal d'assignation
     const modalContent = document.createElement("div");
     modalContent.style.padding = "20px";
     modalContent.innerHTML = `
@@ -524,7 +477,6 @@ addBtnFloor.forEach((addbtn) => {
           assignments[zoneName] = [];
         }
 
-        // Vérification de la capacité maximale
         if (assignments[zoneName].length >= currentZone.capacity) {
           alert("Cette zone est pleine !");
           return;
@@ -543,7 +495,6 @@ addBtnFloor.forEach((addbtn) => {
 
     modalAssignement.showModal();
 
-    // Bouton de fermeture du modal d'assignation
     const closeBtnDialog = modalAssignement.querySelector(".close-dialog-zone");
     closeBtnDialog.addEventListener("click", () => {
       modalAssignement.close();
@@ -558,18 +509,11 @@ addBtnFloor.forEach((addbtn) => {
   });
 });
 
-// ============================================================================
-// FONCTION POUR METTRE À JOUR LA COULEUR DES ZONES
-// ============================================================================
-
-// ============================================================================
-// ZONES - AFFICHAGE DES EMPLOYÉS ASSIGNÉS DANS CHAQUE ZONE
-
+// AFFICHAGE DES EMPLOYÉS ASSIGNÉS DANS CHAQUE ZONE
 function displayZoneAssignments(zoneElement) {
   const zoneName = zoneElement.querySelector("h3").textContent;
   let container = zoneElement.querySelector(".assigned_list");
 
-  // Création du conteneur s'il n'existe pas
   if (!container) {
     const newContainer = document.createElement("div");
     newContainer.classList.add("assigned_list");
@@ -581,7 +525,6 @@ function displayZoneAssignments(zoneElement) {
 
   const assigned = assignments[zoneName] || [];
 
-  // Création des cartes pour chaque employé assigné
   assigned.forEach((emp) => {
     const card = document.createElement("div");
     card.classList.add("assigned_card");
@@ -595,7 +538,6 @@ function displayZoneAssignments(zoneElement) {
 
     container.appendChild(card);
 
-    // Bouton de suppression
     card.querySelector(".remove_assigned").addEventListener("click", (e) => {
       e.stopPropagation(); // Empêcher le clic sur l'image
       assignments[zoneName] = assignments[zoneName].filter(
@@ -606,7 +548,6 @@ function displayZoneAssignments(zoneElement) {
       displayZoneAssignments(zoneElement);
     });
 
-    // Clic sur l'image pour voir le CV
     card.querySelector(".assigned_photo").addEventListener("click", () => {
       showCV(emp);
     });
@@ -614,13 +555,11 @@ function displayZoneAssignments(zoneElement) {
   updateZoneColor(zoneName);
 }
 
+// FONCTION POUR METTRE À JOUR LA COULEUR DES ZONES
 function updateZoneColor(zoneName) {
-  // Trouver les informations de la zone dans le tableau
   const zoneInfo = zones.find((z) => z.name === zoneName);
 
   if (!zoneInfo) return;
-
-  // Trouver l'élément DOM de la zone par son titre h3
   const allZones = document.querySelectorAll(".floor_grid > div");
   let zoneElement = null;
 
@@ -633,22 +572,20 @@ function updateZoneColor(zoneName) {
 
   if (!zoneElement) return;
 
-  // Vérifier si la zone a des employés assignés
+  // Vérification d'assignement
   const hasEmployees =
     assignments[zoneName] && assignments[zoneName].length > 0;
 
-  // Si la zone est restreinte (isRestricted === true)
+  
   if (zoneInfo.isRestricted) {
     if (hasEmployees) {
-      // Si occupée → couleur normale (grise)
       zoneElement.style.backgroundColor = "#c6cdd5";
     } else {
-      // Si vide → couleur rose
       zoneElement.style.backgroundColor = "#fce4ec";
     }
   }
 }
-// CV - AFFICHAGE DU CV D'UN EMPLOYÉ (Dialog CV)
+// AFFICHAGE DU CV D'UN EMPLOYÉ 
 
 function showCV(emp) {
   const dialogCV = document.getElementById("dialogCV");
@@ -671,7 +608,6 @@ function showCV(emp) {
     });
   }
 
-  // Remplir le contenu du CV
   cvContainer.innerHTML = `
     <div style="text-align: center; margin-bottom: 20px;">
       <img src="${photoUrl}" alt="${emp.name}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
@@ -690,8 +626,7 @@ function showCV(emp) {
   dialogCV.showModal();
 }
 
-// ============================================================================
-/*  FERMETURE DU DIALOG CV*/
+//  FERMETURE DU DIALOG CV
 const closeCvBtn = document.querySelector(".close-cv-btn");
 
 closeCvBtn.addEventListener("click", () => {
