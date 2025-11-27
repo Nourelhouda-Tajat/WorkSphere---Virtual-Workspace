@@ -10,14 +10,14 @@ let employees = [
       {
         titre: "Réceptioniste Senior",
         entreprise: "Hôtel Prestige",
-        startDate:"21-8-2000",
-        endDate:"5-1-2005"
+        startDate: "2001-8-01",
+        endDate: "2005-01-05",
       },
       {
         titre: "Assistante Administrative",
         entreprise: "Cabinet Juridique Martin",
-        startDate:"21-8-2007",
-        endDate:"5-1-2009"
+        startDate: "2007-8-21",
+        endDate: "2009-1-27",
       },
     ],
   },
@@ -32,20 +32,20 @@ let employees = [
       {
         titre: "Directrice des Opérations",
         entreprise: "TechCorp France",
-        startDate:"7-2-2010",
-        endDate:"8-3-2015"
+        startDate: "2010-2-5",
+        endDate: "2015-3-8",
       },
       {
         titre: "Chef de Projet",
         entreprise: "Innovation Solutions",
-        startDate:"20-8-2020",
-        endDate:"5-10-2025"
+        startDate: "2020-8-20",
+        endDate: "2025-10-25",
       },
       {
         titre: "Coordinatrice d'Équipe",
         entreprise: "Services Consulting",
-        startDate:"1-7-2003",
-        endDate:"6-4-2009"
+        startDate: "2003-7-5",
+        endDate: "2009-4-7",
       },
     ],
   },
@@ -60,20 +60,20 @@ let employees = [
       {
         titre: "Administrateur Système Senior",
         entreprise: "DataFlow Systems",
-        startDate:"20-7-2020",
-        endDate:"5-11-2021"
+        startDate: "2020-7-20",
+        endDate: "2021-11-4",
       },
       {
         titre: "Technicien Réseau",
         entreprise: "CloudTech Solutions",
-        startDate:"18-6-2022",
-        endDate:"5-9-2022"
+        startDate: "2022-6-4",
+        endDate: "2022-9-7",
       },
       {
         titre: "Support Informatique",
         entreprise: "Bureau Services Plus",
-        startDate:"22-3-2024",
-        endDate:"5-1-2025"
+        startDate: "2024-3-2",
+        endDate: "2025-1-5",
       },
     ],
   },
@@ -88,47 +88,48 @@ let employees = [
       {
         titre: "Chef de Sécurité",
         entreprise: "SecuriGroup International",
-        startDate:"21-8-2010",
-        endDate:"5-5-2015"
-      }
+        startDate: "2010-8-24",
+        endDate: "2015-5-5",
+      },
     ],
   },
   {
     id: 5,
     name: "Laurent Michel Durand",
     role: "Manager",
-    photo: "https://e7.pngegg.com/pngimages/136/22/png-clipart-user-profile-computer-icons-girl-customer-avatar-angle-heroes-thumbnail.png",
+    photo:
+      "https://e7.pngegg.com/pngimages/136/22/png-clipart-user-profile-computer-icons-girl-customer-avatar-angle-heroes-thumbnail.png",
     email: "laurent.durand@entreprise.com",
     phone: "06 44 55 66 77",
     experiences: [
       {
         titre: "Directeur Commercial",
         entreprise: "Ventes Premium SARL",
-        startDate:"11-1-2010",
-        endDate:"7-7-2017"
+        startDate: "2010-1-1",
+        endDate: "2017-7-4",
       },
-      
     ],
   },
   {
     id: 6,
     name: "Nathalie Françoise Petit",
     role: "Reception",
-    photo: "https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-female-user-profile-vector-illustration-isolated-background-women-profile-sign-business-concept_157943-38866.jpg",
+    photo:
+      "https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-female-user-profile-vector-illustration-isolated-background-women-profile-sign-business-concept_157943-38866.jpg",
     email: "nathalie.petit@entreprise.com",
     phone: "06 99 88 77 66",
     experiences: [
       {
         titre: "Hôtesse d'Accueil",
         entreprise: "Air France Hub",
-        startDate:"3-4-2004",
-        endDate:"5-12-2009"
+        startDate: "2004-4-5",
+        endDate: "2009-12-5",
       },
       {
         titre: "Reception",
         entreprise: "Clinique Saint-Joseph",
-        startDate:"21-8-2010",
-        endDate:"5-1-2020"
+        startDate: "2010-8-5",
+        endDate: "2014-1-4",
       },
     ],
   },
@@ -424,8 +425,8 @@ submitBtn.addEventListener("click", () => {
   let experiences = [];
 
   expItems.forEach((exp) => {
-    const company = exp.querySelector(".exp-company")?.value;
-    const role = exp.querySelector(".exp-role")?.value;
+    const company = exp.querySelector(".exp-company").value;
+    const role = exp.querySelector(".exp-role").value;
     const start = exp.querySelector(".exp-startdate").value;
     const end = exp.querySelector(".exp-enddate").value;
 
@@ -653,8 +654,7 @@ function showCV(emp) {
   const dialogCV = document.getElementById("dialogCV");
   const cvContainer = document.getElementById("cvContainer");
 
-  const photoUrl =
-    emp.photo || defaultPhoto;
+  const photoUrl = emp.photo || defaultPhoto;
 
   // Construction des expériences
   let experiencesHTML = "";
@@ -703,3 +703,4 @@ dialogCV.addEventListener("click", (e) => {
     dialogCV.close();
   }
 });
+
